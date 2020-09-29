@@ -26,6 +26,11 @@ import presentationStyle from "assets/jss/material-kit-pro-react/views/presentat
 
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Mail from "@material-ui/icons/Mail";
+import bg7 from "assets/img/bg7.jpg";
+import Card from "components/Card/Card.js";
+import CardBody from "components/Card/CardBody.js";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import PreFooter from "components/PreFooter/PreFooter";
 
 const useStyles = makeStyles(presentationStyle);
 
@@ -44,7 +49,7 @@ export default function PresentationPage() {
         color="transparent"
         changeColorOnScroll={{
           height: 400,
-          color: "info"
+          color: "info",
         }}
       />
       <Parallax
@@ -55,12 +60,8 @@ export default function PresentationPage() {
           <GridContainer>
             <GridItem>
               <div className={classes.brand}>
-                <h1>
-                  PICXEL STORE
-                </h1>
-                <h3 className={classes.title}>
-                  Do Your Own Art.
-                </h3>
+                <h1>PICXEL STORE</h1>
+                <h3 className={classes.title}>Do Your Own Art.</h3>
               </div>
             </GridItem>
           </GridContainer>
@@ -69,128 +70,119 @@ export default function PresentationPage() {
       <div className={classNames(classes.main, classes.mainRaised)}>
         <SectionDescription />
         <SectionComponents />
-        <SectionCards />
-        <SectionContent />
-        <SectionSections />
         <SectionExamples />
-        <SectionFreeDemo />
-        <SectionOverview />
       </div>
-      <SectionPricing />
+
+      <PreFooter />
+
       <Footer
-          theme="white"
-          content={
-            <div>
-              <ul className={classes.socialButtons}>
+        theme="white"
+        content={
+          <div>
+            <ul className={classes.socialButtons}>
+              <li>
+                <Button justIcon simple href="#pablo" color="twitter">
+                  <i className="fab fa-twitter" />
+                </Button>
+              </li>
+              <li>
+                <Button justIcon simple href="#pablo" color="facebook">
+                  <i className="fab fa-facebook-square" />
+                </Button>
+              </li>
+              <li>
+                <Button justIcon simple href="#pablo" color="dribbble">
+                  <i className="fab fa-dribbble" />
+                </Button>
+              </li>
+              <li>
+                <Button justIcon simple href="#pablo" color="google">
+                  <i className="fab fa-google-plus-g" />
+                </Button>
+              </li>
+              <li>
+                <Button justIcon simple href="#pablo" color="youtube">
+                  <i className="fab fa-youtube" />
+                </Button>
+              </li>
+            </ul>
+            <div className={classNames(classes.pullCenter, classes.copyRight)}>
+              Copyright &copy; {new Date().getFullYear()} Developed by{" "}
+              <a href="https://davidelyosef.web.app" target="_blank">
+                David-el Yosef
+              </a>{" "}
+              and Daphne Levy.
+            </div>
+          </div>
+        }
+      >
+        <div className={classes.footer}>
+          <GridContainer>
+            <GridItem xs={12} sm={4} md={4}>
+              <a href="#pablo">
+                <h5>PICXEL Store</h5>
+              </a>
+              <p>
+                Probably the best UI Kit in the world! We know you{"'"}ve been
+                waiting for it, so don{"'"}t be shy!
+              </p>
+            </GridItem>
+            <GridItem xs={12} sm={2} md={2}>
+              <h5>About</h5>
+              <ul className={classes.linksVertical}>
                 <li>
-                  <Button justIcon simple href="#pablo" color="twitter">
-                    <i className="fab fa-twitter" />
-                  </Button>
+                  <a href="#pablo">Blog</a>
                 </li>
                 <li>
-                  <Button justIcon simple href="#pablo" color="facebook">
-                    <i className="fab fa-facebook-square" />
-                  </Button>
+                  <a href="#pablo">About us</a>
                 </li>
                 <li>
-                  <Button justIcon simple href="#pablo" color="dribbble">
-                    <i className="fab fa-dribbble" />
-                  </Button>
+                  <a href="#pablo">Presentation</a>
                 </li>
                 <li>
-                  <Button justIcon simple href="#pablo" color="google">
-                    <i className="fab fa-google-plus-g" />
-                  </Button>
-                </li>
-                <li>
-                  <Button justIcon simple href="#pablo" color="youtube">
-                    <i className="fab fa-youtube" />
-                  </Button>
+                  <a href="#pablo">Contact us</a>
                 </li>
               </ul>
-              <div
-                className={classNames(classes.pullCenter, classes.copyRight)}
-              >
-                Copyright &copy; {new Date().getFullYear()}{" "}
-                Developed by{" "}
-                <a
-                  href="https://davidelyosef.web.app"
-                  target="_blank"
-                >
-                  David-el Yosef
-                </a>{" "}
-                and Daphne Levy.
-              </div>
-            </div>
-          }
-        >
-          <div className={classes.footer}>
-            <GridContainer>
-              <GridItem xs={12} sm={4} md={4}>
-                <a href="#pablo">
-                  <h5>PICXEL Store</h5>
-                </a>
-                <p>
-                  Probably the best UI Kit in the world! We know you{"'"}ve been
-                  waiting for it, so don{"'"}t be shy!
-                </p>
-              </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
-                <h5>About</h5>
-                <ul className={classes.linksVertical}>
-                  <li>
-                    <a href="#pablo">Blog</a>
-                  </li>
-                  <li>
-                    <a href="#pablo">About us</a>
-                  </li>
-                  <li>
-                    <a href="#pablo">Presentation</a>
-                  </li>
-                  <li>
-                    <a href="#pablo">Contact us</a>
-                  </li>
-                </ul>
-              </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
-                <h5>Legal</h5>
-                <ul className={classes.linksVertical}>
-                  <li>
-                    <a href="#pablo">Transactions FAQ</a>
-                  </li>
-                  <li>
-                    <a href="#pablo">Terms & conditions</a>
-                  </li>
-                  <li>
-                    <a href="#pablo">Licenses</a>
-                  </li>
-                </ul>
-              </GridItem>
-              <GridItem xs={12} sm={4} md={4}>
-                <h5>Subscribe to Newsletter</h5>
-                <p>
-                  Join our newsletter and get news in your inbox every week! We
-                  hate spam too, so no worries about this.
-                </p>
-                <form>
-                  <CustomInput
-                    id="footeremail"
-                    formControlProps={{
-                      fullWidth: false,
-                      className: classes.customFormControl
-                    }}
-                    inputProps={{
-                      placeholder: "Your Email..."
-                    }}
-                  />
-                  <Button color="primary" justIcon>
-                    <Mail />
-                  </Button>
-                </form>
-              </GridItem>
-            </GridContainer>
-          </div>
-        </Footer>
+            </GridItem>
+            <GridItem xs={12} sm={2} md={2}>
+              <h5>Legal</h5>
+              <ul className={classes.linksVertical}>
+                <li>
+                  <a href="#pablo">Transactions FAQ</a>
+                </li>
+                <li>
+                  <a href="#pablo">Terms & conditions</a>
+                </li>
+                <li>
+                  <a href="#pablo">Licenses</a>
+                </li>
+              </ul>
+            </GridItem>
+            <GridItem xs={12} sm={4} md={4}>
+              <h5>Subscribe to Newsletter</h5>
+              <p>
+                Join our newsletter and get news in your inbox every week! We
+                hate spam too, so no worries about this.
+              </p>
+              <form>
+                <CustomInput
+                  id="footeremail"
+                  formControlProps={{
+                    fullWidth: false,
+                    className: classes.customFormControl,
+                  }}
+                  inputProps={{
+                    placeholder: "Your Email...",
+                  }}
+                />
+                <Button color="primary" justIcon>
+                  <Mail />
+                </Button>
+              </form>
+            </GridItem>
+          </GridContainer>
+        </div>
+      </Footer>
     </div>
   );
 }
