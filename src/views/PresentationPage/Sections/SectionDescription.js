@@ -23,11 +23,9 @@ export default function SectionDescription() {
         <GridContainer justify="center">
           <GridItem md={8} sm={8}>
             <h4 className={classes.description}>
-              Material Kit React PRO is a Material-UI Kit with a fresh, new
-              design inspired by Google{"'"}s Material Design. You asked for it,
-              so we built it. It{"'"}s a great pleasure to introduce to you the
-              material concepts in an easy to use and beautiful set of
-              components.
+              במהלך שנות ה-70 של המאה ה-20, עם התגבשות תחום לימודי התרבות, המונח
+              טקסט התרחב להכללת כל פעילות אנושית הניתנת לניתוח תרבותי, בין אם
+              מדובר במוצר מוגמר ובין אם מדובר בפעילות מתפתחת ומשתנה
             </h4>
           </GridItem>
         </GridContainer>

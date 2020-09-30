@@ -9,6 +9,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import officeStyle from "assets/jss/material-kit-pro-react/views/aboutUsSections/officeStyle.js";
 
+// images
+import picxel1 from "assets/img/picxel/picxel1.jpeg";
+import picxel2 from "assets/img/picxel/picxel2.jpg";
+import picxel3 from "assets/img/picxel/picxel3.jpg";
+import picxel4 from "assets/img/picxel/picxel4.jpg";
+import picxel_about from "assets/img/picxel/picxel_about.jpeg";
 // office
 import office1 from "assets/img/examples/office1.jpg";
 import office2 from "assets/img/examples/office2.jpg";
@@ -28,11 +34,10 @@ export default function SectionOffice() {
           sm={8}
           className={classNames(classes.mrAuto, classes.mlAuto)}
         >
-          <h2 className={classes.title}>Our office is our second home</h2>
+          <h2 className={classes.title}>הפכו את הבית לנעים יותר</h2>
           <h4 className={classes.description}>
-            Here are some pictures from our office. You can see the place looks
-            like a palace and is fully equiped with everything you need to get
-            the job done.
+            הנה כמה תמונות ממשרדנו. אתה יכול לראות שהמקום נראה כמו ארמון והוא
+            מאובזר במלואו בכל מה שאתה צריך כדי לבצע את העבודה.
           </h4>
         </GridItem>
       </GridContainer>
@@ -44,7 +49,7 @@ export default function SectionOffice() {
               classes.imgFluid,
               classes.rounded
             )}
-            src={office1}
+            src={picxel1}
             alt="office1"
           />
         </GridItem>
@@ -55,7 +60,7 @@ export default function SectionOffice() {
               classes.imgFluid,
               classes.rounded
             )}
-            src={office2}
+            src={picxel2}
             alt="office2"
           />
         </GridItem>
@@ -66,7 +71,7 @@ export default function SectionOffice() {
               classes.imgFluid,
               classes.rounded
             )}
-            src={office3}
+            src={picxel3}
             alt="office3"
           />
         </GridItem>
@@ -77,7 +82,7 @@ export default function SectionOffice() {
               classes.imgFluid,
               classes.rounded
             )}
-            src={office4}
+            src={picxel4}
             alt="office4"
           />
         </GridItem>
@@ -88,7 +93,7 @@ export default function SectionOffice() {
               classes.imgFluid,
               classes.rounded
             )}
-            src={office5}
+            src={picxel_about}
             alt="office5"
           />
         </GridItem>

@@ -6,6 +6,7 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
+import ShoppingCart from "@material-ui/icons/ShoppingCart";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
@@ -30,7 +31,7 @@ export default function AboutUsPage() {
   const classes = useStyles();
   return (
     <div>
-      <Parallax image={require("assets/img/bg9.jpg")} filter="dark" small>
+      <Parallax image={require("assets/img/picxel/picxel_about.jpeg")} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem
@@ -53,10 +54,8 @@ export default function AboutUsPage() {
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
           <SectionDescription />
-          <SectionTeam />
-          <SectionServices />
-          <SectionOffice />
           <SectionContact />
+          <SectionOffice />
         </div>
       </div>
     </div>
