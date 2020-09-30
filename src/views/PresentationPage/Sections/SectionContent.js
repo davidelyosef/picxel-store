@@ -10,9 +10,9 @@ import "animate.css/animate.min.css";
 
 import contentStyle from "assets/jss/material-kit-pro-react/views/presentationSections/contentStyle.js";
 // images
-import presentationiPad from "assets/img/assets-for-demo/presentationViewSectionComponent/presentation-ipad.jpg";
-import presentationiPadComments from "assets/img/assets-for-demo/presentationViewSectionComponent/ipad-comments.jpg";
-import presentationiPadTable from "assets/img/assets-for-demo/presentationViewSectionComponent/ipad-table.jpg";
+import picxel_1 from "assets/img/picxel/picxel_1.jpg";
+import picxel_2 from "assets/img/picxel/picxel_2.jpg";
+import picxel_3 from "assets/img/picxel/picxel_3.jpg";
 
 const useStyles = makeStyles(contentStyle);
 
@@ -22,28 +22,12 @@ export default function SectionContent() {
     <div className={classes.section}>
       <div className={classes.container}>
         <GridContainer justify="center">
-          <GridItem md={4}>
-            <div className={classes.sectionDescription}>
-              <h3 className={classes.title}>Content Areas</h3>
-              <h6 className={classes.description}>
-                For Areas that Need More Space
-              </h6>
-              <h5 className={classes.description}>
-                If you need elements such as tables, comments, description
-                areas, tabs and many others, we{"'"}ve got you covered. We took
-                into consideration multiple use cases and came up with some
-                specific elements that you will love to use. They{"'"}re
-                beautiful and easy to use for the end user navigating your
-                website.{" "}
-              </h5>
-            </div>
-          </GridItem>
-          <GridItem md={7} className={classes.mlAuto}>
+          <GridItem md={7}>
             <div className={classes.imageContainer}>
               <div className={classes.animeAreaImg}>
                 <ScrollAnimation animateIn="fadeInUp">
                   <img
-                    src={presentationiPadComments}
+                    src={picxel_1}
                     alt="iPad comments"
                     className={classes.areaImg}
                   />
@@ -52,17 +36,34 @@ export default function SectionContent() {
               <div className={classes.animeInfoImg}>
                 <ScrollAnimation animateIn="fadeInUp">
                   <img
-                    src={presentationiPadTable}
+                    src={picxel_2}
                     alt="iPad table"
                     className={classes.infoImg}
                   />
                 </ScrollAnimation>
               </div>
-              <img
-                className={classes.ipadImg}
-                src={presentationiPad}
-                alt="iPad"
-              />
+              <img className={classes.ipadImg} src={picxel_3} alt="iPad" />
+            </div>
+          </GridItem>
+          <GridItem md={4} className={classes.mlAuto}>
+            <div
+              className={classes.sectionDescription}
+              style={{
+                textAlign: "end",
+                marginTop: "0",
+              }}
+            >
+              <h3 className={classes.title}>איך אנחנו מכינים את זה</h3>
+              <h6 className={classes.description}>מפקסלים את התמונה שלך</h6>
+              <h5 className={classes.description}>
+                במהלך שנות ה-70 של המאה ה-20, עם התגבשות תחום לימודי התרבות,
+                המונח טקסט התרחב להכללת כל פעילות אנושית הניתנת לניתוח תרבותי,
+                בין אם מדובר במוצר מוגמר ובין
+                אם מדובר בפעילות מתפתחת ומשתנה (כמו טקס חברתי מכל סוג שהוא).
+                חוקרי הטקסטים במשמעותם המורחבת יישמו עקרונות מתחום חקר הספרות על
+                תופעות חברתיות, כגון מיקום התופעות בהקשרים היסטוריים שונים
+                ומציאת קישורים בין אירועים המתרחשים בשדות חברתיים שונים{" "}
+              </h5>
             </div>
           </GridItem>
         </GridContainer>

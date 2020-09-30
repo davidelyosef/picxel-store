@@ -37,15 +37,14 @@ export default function PreFooter() {
               className={classNames(classes.mlAuto, classes.mrAuto)}
             >
               <div className={classes.textCenter}>
-                <h3 className={classes.title}>Subscribe to our Newsletter</h3>
+                <h3 className={classes.title}>הירשם לניוזלטר שלנו</h3>
                 <p className={classes.description}>
-                  Join our newsletter and get news in your inbox every week! We
-                  hate spam too, so no worries about this.
+                מבצעים, מוצרים חדשים ומכירות. ישירות לתיבת הדואר הנכנס שלך
                 </p>
               </div>
               <Card raised className={classes.card}>
                 <CardBody className={classes.cardBody}>
-                  <form>
+                  <form style={{ direction: 'rtl' }}>
                     <GridContainer>
                       <GridItem xs={12} sm={6} md={6} lg={8}>
                         <CustomInput
@@ -60,7 +59,7 @@ export default function PreFooter() {
                                 <Mail />
                               </InputAdornment>
                             ),
-                            placeholder: "Your Email..."
+                            placeholder: 'הדוא"ל שלך'
                           }}
                         />
                       </GridItem>
@@ -70,7 +69,7 @@ export default function PreFooter() {
                           block
                           className={classes.subscribeButton}
                         >
-                          subscribe
+                          הירשם
                         </Button>
                       </GridItem>
                     </GridContainer>

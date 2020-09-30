@@ -22,11 +22,12 @@ export default function SectionDescription() {
           className={classNames(classes.mrAuto, classes.mlAuto)}
         >
           <h5 className={classes.description}>
-            This is the paragraph where you can write more details about your
-            product. Keep you user engaged by providing meaningful information.
-            Remember that by this time, the user is curious, otherwise he wouldn
-            {"'"}t scroll to get here. Add a button if you want the user to see
-            more.
+            במהלך שנות ה-70 של המאה ה-20, עם התגבשות תחום לימודי התרבות, המונח
+            טקסט התרחב להכללת כל פעילות אנושית הניתנת לניתוח תרבותי, בין אם
+            מדובר במוצר מוגמר ובין אם מדובר בפעילות מתפתחת ומשתנה (כמו טקס חברתי
+            מכל סוג שהוא). חוקרי הטקסטים במשמעותם המורחבת יישמו עקרונות מתחום
+            חקר הספרות על תופעות חברתיות, כגון מיקום התופעות בהקשרים היסטוריים
+            שונים ומציאת קישורים בין אירועים המתרחשים בשדות חברתיים שונים
           </h5>
         </GridItem>
       </GridContainer>

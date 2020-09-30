@@ -24,9 +24,9 @@ export default function SectionComponents() {
       <div className={classes.container}>
         <GridContainer justify="center">
           <GridItem md={5} lg={5} sm={12} xs={12}>
-            <h3 className={classes.title}>Basic Components</h3>
+            <h3 className={classes.title}>How We Made It</h3>
             <h6 className={classes.description}>
-              The core elements of your website
+              Pixelize your own image
             </h6>
             <h5 className={classes.description}>
               We re-styled every Bootstrap element to make it resemble Material

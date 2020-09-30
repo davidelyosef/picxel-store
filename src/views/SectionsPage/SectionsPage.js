@@ -85,12 +85,6 @@ export default function SectionsPage() {
   const classes = useStyles();
   return (
     <div>
-      <Header
-        color="info"
-        brand="PICXEL"
-        links={<HeaderLinks dropdownHoverColor="info" />}
-        fixed
-      />
       <div className={classes.main}>
         <SectionHeaders id="headers" />
         <SectionFeatures id="features" />

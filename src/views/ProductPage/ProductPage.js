@@ -70,16 +70,6 @@ export default function ProductPage() {
   ];
   return (
     <div className={classes.productPage}>
-      <Header
-        brand="PICXEL"
-        links={<HeaderLinks dropdownHoverColor="rose" />}
-        fixed
-        color="transparent"
-        changeColorOnScroll={{
-          height: 100,
-          color: "rose"
-        }}
-      />
       <Parallax
         image={require("assets/img/bg6.jpg")}
         filter="rose"
@@ -460,61 +450,6 @@ export default function ProductPage() {
           </div>
         </div>
       </div>
-      <Footer
-        // theme="dark"
-        content={
-          <div>
-            <div className={classes.left}>
-              <List className={classes.list}>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/?ref=mkpr-pricing"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    Creative Tim
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/presentation?ref=mkpr-pricing"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    About us
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a href="//blog.creative-tim.com/" className={classes.block}>
-                    Blog
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/license?ref=mkpr-pricing"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    Licenses
-                  </a>
-                </ListItem>
-              </List>
-            </div>
-            <div className={classes.right}>
-              &copy; {1900 + new Date().getYear()} , made with{" "}
-              <Favorite className={classes.icon} /> by{" "}
-              <a
-                href="https://www.creative-tim.com?ref=mkpr-pricing"
-                target="_blank"
-                className={classes.aClasses}
-              >
-                Creative Tim
-              </a>{" "}
-              for a better web.
-            </div>
-          </div>
-        }
-      />
     </div>
   );
 }

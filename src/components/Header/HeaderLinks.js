@@ -92,32 +92,32 @@ export default function HeaderLinks(props) {
     <List className={classes.list + " " + classes.mlAuto}>
       <ListItem className={classes.listItem}>
         <Button className={classes.navLink} color="transparent">
-          <Link to="/" style={{ color: "white" }}>
-            Home
+          <Link to="/" style={{ color: "white", fontSize: "19px" }}>
+            בית
           </Link>
         </Button>
       </ListItem>
 
       <ListItem className={classes.listItem}>
       <Button className={classes.navLink} color="transparent">
-          <Link to="/about-us" style={{ color: "white" }}>
-            About Us
+          <Link to="/about-us" style={{ color: "white", fontSize: "19px" }}>
+            אודות
           </Link>
         </Button>
       </ListItem>
 
       <ListItem className={classes.listItem}>
       <Button className={classes.navLink} color="transparent">
-          <Link to="/ecommerce-page" style={{ color: "white" }}>
-            Products
+          <Link to="/ecommerce-page" style={{ color: "white", fontSize: "19px" }}>
+            מוצרים
           </Link>
         </Button>
       </ListItem>
 
       <ListItem className={classes.listItem}>
       <Button className={classes.navLink} color="transparent">
-          <Link to="/contact-us" style={{ color: "white" }}>
-            Contact Us
+          <Link to="/contact-us" style={{ color: "white", fontSize: "19px" }}>
+            צור קשר
           </Link>
         </Button>
       </ListItem>
@@ -126,7 +126,7 @@ export default function HeaderLinks(props) {
         <Link style={{ color: "#fff" }} to="/shopping-cart-page">
           <ShoppingCart
             className={classes.icons}
-            style={{ width: "30px", height: "30px" }}
+            style={{ width: "32px", height: "32px" }}
           />
         </Link>
       </ListItem>
