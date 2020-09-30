@@ -15,12 +15,6 @@ import picxel2 from "assets/img/picxel/picxel2.jpg";
 import picxel3 from "assets/img/picxel/picxel3.jpg";
 import picxel4 from "assets/img/picxel/picxel4.jpg";
 import picxel_about from "assets/img/picxel/picxel_about.jpeg";
-// office
-import office1 from "assets/img/examples/office1.jpg";
-import office2 from "assets/img/examples/office2.jpg";
-import office3 from "assets/img/examples/office3.jpg";
-import office4 from "assets/img/examples/office4.jpg";
-import office5 from "assets/img/examples/office5.jpg";
 
 const useStyles = makeStyles(officeStyle);
 

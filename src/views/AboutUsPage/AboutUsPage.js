@@ -4,22 +4,16 @@ import React from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-// @material-ui/icons
-import Favorite from "@material-ui/icons/Favorite";
-import ShoppingCart from "@material-ui/icons/ShoppingCart";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax/Parallax.js";
 // sections for this page
 import SectionDescription from "views/AboutUsPage/Sections/SectionDescription.js";
-import SectionTeam from "views/AboutUsPage/Sections/SectionTeam.js";
-import SectionServices from "views/AboutUsPage/Sections/SectionServices.js";
 import SectionOffice from "views/AboutUsPage/Sections/SectionOffice.js";
 import SectionContact from "views/AboutUsPage/Sections/SectionContact.js";
 
 import aboutUsStyle from "assets/jss/material-kit-pro-react/views/aboutUsStyle.js";
-import picxel_about from "assets/img/picxel/picxel_about.jpeg";
 
 const useStyles = makeStyles(aboutUsStyle);
 
