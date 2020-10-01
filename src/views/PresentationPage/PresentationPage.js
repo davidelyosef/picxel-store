@@ -4,6 +4,7 @@ import React from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import bb41 from "assets/img/picxel/bb4-1.jpg";
 // core components
 import Parallax from "components/Parallax/Parallax.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -22,6 +23,7 @@ import SectionPricing from "views/PresentationPage/Sections/SectionPricing.js";
 import presentationStyle from "assets/jss/material-kit-pro-react/views/presentationStyle.js";
 
 import PreFooter from "components/PreFooter/PreFooter";
+import SectionCollection from "./Sections/SectionCollection";
 
 const useStyles = makeStyles(presentationStyle);
 
@@ -49,9 +51,22 @@ export default function PresentationPage() {
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
+        <GridContainer className={classes.collections}>
+          <SectionCollection
+            link="ecommerce-page"
+            name="Artists"
+            bg="https://cdn.shopify.com/s/files/1/0269/4725/6407/products/281fec30-a3c5-4c01-918f-b57873dc23ec_360x.jpg?v=1600120666"
+          />
+          <SectionCollection
+            link="ecommerce-page"
+            name="Make Your Own Art"
+            bg={bb41}
+          />
+        </GridContainer>
+
         <SectionDescription />
         <SectionContent />
-        {/* <SectionExamples /> */}
+        <SectionExamples />
       </div>
     </div>
   );
