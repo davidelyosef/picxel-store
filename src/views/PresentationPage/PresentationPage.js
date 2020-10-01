@@ -66,7 +66,6 @@ export default function PresentationPage() {
 
         <SectionDescription />
         <SectionContent />
-        <SectionExamples />
       </div>
     </div>
   );

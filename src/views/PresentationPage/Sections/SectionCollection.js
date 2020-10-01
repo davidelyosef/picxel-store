@@ -21,19 +21,19 @@ const SectionCollection = ({ link, name, bg }) => {
     <GridItem xs={12} sm={6} md={6}>
       <Link to={`/${link}`}>
         <Card
-        className="collection-home"
+          className="collection-home"
           background
           style={{
-            backgroundImage:
-              "url(" + bg + ")",
-            marginTop: '0',
-            padding: '50px',
+            backgroundImage: "url(" + bg + ")",
+            marginTop: "0",
+            padding: "50px",
           }}
         >
-          <CardBody background className={`${classes.cardBody} collection-home`}>
-            <a href="#pablo">
-              <h2 className={classes.cardTitleWhite}>{name}</h2>
-            </a>
+          <CardBody
+            background
+            className={`${classes.cardBody} collection-home`}
+          >
+            <h2 className={classes.cardTitleWhite}>{name}</h2>
           </CardBody>
         </Card>
       </Link>
