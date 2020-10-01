@@ -1,5 +1,5 @@
 import React from "react";
-import bg7 from "assets/img/bg7.jpg";
+import bg7 from "assets/img/picxel/picxel1.jpeg";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import InputAdornment from "@material-ui/core/InputAdornment";
