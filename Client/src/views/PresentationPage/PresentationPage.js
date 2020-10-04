@@ -4,7 +4,6 @@ import React from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import bb41 from "assets/img/picxel/bb4-1.jpg";
 // core components
 import Parallax from "components/Parallax/Parallax.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -15,7 +14,6 @@ import presentationStyle from "assets/jss/material-kit-pro-react/views/presentat
 
 import SectionCollection from "./Sections/SectionCollection";
 import SectionProductPreview from "./Sections/SectionProductPreview";
-
 
 // redux
 import { connect } from "react-redux";
@@ -81,6 +79,7 @@ const PresentationPage = ({ productsReducer: { products }, getProducts }) => {
         </div>
 
         <SectionContent />
+        {/* <SectionExamples /> */}
       </div>
     </div>
   );

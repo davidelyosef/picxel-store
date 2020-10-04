@@ -42,21 +42,10 @@ import styles from "assets/jss/material-kit-pro-react/views/ecommerceSections/pr
 const useStyles = makeStyles(styles);
 
 export default function SectionProducts() {
-  const [checked, setChecked] = React.useState([1, 9, 27]);
-  const [priceRange, setPriceRange] = React.useState([101, 790]);
 
-  const handleToggle = value => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-    setChecked(newChecked);
-  };
   const classes = useStyles();
   return (
+    <div className={classes.section} style={{paddingTop: 0}}>
       <div className={classes.container}>
         <h2>News in fashion</h2>
         <GridContainer>
@@ -132,7 +121,52 @@ export default function SectionProducts() {
               </CardBody>
             </Card>
           </GridItem>
+          <GridItem md={6} sm={6}>
+            <Card background style={{ backgroundImage: `url(${dg3})` }}>
+              <CardBody background>
+                <h6
+                  className={classNames(classes.cardCategory, classes.textInfo)}
+                >
+                  Tutorials
+                </h6>
+                <a href="#pablo">
+                  <h3 className={classes.cardTitle}>Trending colors of 2017</h3>
+                </a>
+                <p className={classes.description}>
+                  Don{"'"}t be scared of the truth because we need to restart
+                  the human foundation in truth And I love you like Kanye loves
+                  Kanye I love Rick Owens’ bed design but the back is...
+                </p>
+                <Button href="#" round color="white">
+                  <Subject /> Read
+                </Button>
+              </CardBody>
+            </Card>
+          </GridItem>
+          <GridItem md={6} sm={6}>
+            <Card background style={{ backgroundImage: `url(${dg1})` }}>
+              <CardBody background>
+                <h6
+                  className={classNames(classes.cardCategory, classes.textInfo)}
+                >
+                  Productivity Style
+                </h6>
+                <a href="#pablo">
+                  <h3 className={classes.cardTitle}>Fashion & Style 2017</h3>
+                </a>
+                <p className={classes.description}>
+                  Don{"'"}t be scared of the truth because we need to restart
+                  the human foundation in truth And I love you like Kanye loves
+                  Kanye I love Rick Owens’ bed design but the back is...
+                </p>
+                <Button href="#" round color="white">
+                  <Subject /> Read
+                </Button>
+              </CardBody>
+            </Card>
+          </GridItem>
         </GridContainer>
       </div>
+    </div>
   );
 }
