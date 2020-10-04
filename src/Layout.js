@@ -44,6 +44,7 @@ var hist = createBrowserHistory();
 
 const Layout = () => {
   const classes = useStyles();
+
   return (
     <Router history={hist}>
       {/* Header */}
@@ -69,7 +70,7 @@ const Layout = () => {
         <Route path="/login-page" component={LoginPage} />
         <Route path="/pricing" component={PricingPage} />
         <Route path="/profile-page" component={ProfilePage} />
-        <Route path="/product-page" component={ProductPage} />
+        <Route exac path="/product-page/:en_name" component={ProductPage} />
         <Route path="/sections" component={SectionsPage} />
         <Route path="/shopping-cart-page" component={ShoppingCartPage} />
         <Route path="/signup-page" component={SignupPage} />

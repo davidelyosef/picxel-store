@@ -18,7 +18,6 @@ import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import styles from "assets/jss/material-kit-pro-react/views/ecommerceSections/latestOffersStyle.js";
 import defaultImage from "assets/img/placeholder.jpg";
 
-import gucci from "assets/img/examples/gucci.jpg";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
@@ -26,12 +25,14 @@ const useStyles = makeStyles(styles);
 const SectionProductPreview = ({
   product: {
     name,
+    en_name,
+    artist,
     description,
     price,
     before_discount,
     wishlist,
-    link,
-    img_src,
+    background,
+    link = '/product-page'
   },
 }) => {
   const classes = useStyles();
@@ -39,9 +40,11 @@ const SectionProductPreview = ({
     <GridItem md={4} sm={4}>
       <Card product plain>
         <CardHeader image plain>
-          <Link to={link}>
+          <Link to={`/product-page/${en_name}`}>
             <img
-              src={img_src ? img_src : defaultImage}
+              src={
+                background ? require(`assets/img/${background}`) : defaultImage
+              }
               alt="..."
               style={{ height: "300px", objectFit: "cover" }}
             />
@@ -49,7 +52,9 @@ const SectionProductPreview = ({
           <div
             className={classes.coloredShadow}
             style={{
-              backgroundImage: `url(${img_src ? img_src : defaultImage})`,
+              backgroundImage: `url(${
+                background ? require(`assets/img/${background}`) : defaultImage
+              })`,
               opacity: 1,
             }}
           />
@@ -71,6 +76,7 @@ const SectionProductPreview = ({
               €{price}
             </span>
           </div>
+          {/* eslint-disable-next-line */}
           <div className={classNames(classes.stats, classes.mlAuto)}>
             <Tooltip
               id="tooltip-top"
