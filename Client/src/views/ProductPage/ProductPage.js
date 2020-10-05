@@ -39,10 +39,7 @@ import cardProduct1 from "assets/img/examples/card-product1.jpg";
 import cardProduct3 from "assets/img/examples/card-product3.jpg";
 import cardProduct4 from "assets/img/examples/card-product4.jpg";
 import cardProduct2 from "assets/img/examples/card-product2.jpg";
-import product1 from "assets/img/examples/product1.jpg";
-import product2 from "assets/img/examples/product2.jpg";
-import product3 from "assets/img/examples/product3.jpg";
-import product4 from "assets/img/examples/product4.jpg";
+import defaultImage from "assets/img/placeholder.jpg";
 
 const useStyles = makeStyles(productStyle);
 import "./style/productPage.scss";
@@ -55,7 +52,6 @@ const ProductPage = (props) => {
   const { getProduct, getProducts } = props;
 
   // const state = store.getState();
-  console.log(props);
   const { selected } = props.state;
 
   useEffect(() => {
@@ -67,29 +63,32 @@ const ProductPage = (props) => {
     // eslint-disable-next-line
   }, selected);
 
+  let imagesArr = [];
+
+  const setImageArr = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+      try {
+        imagesArr[i] = {
+          original: require(`assets/img/artists_picxel/${arr[i]}`),
+          thumbnail: require(`assets/img/artists_picxel/${arr[i]}`),
+        };
+        // error handeling
+      } catch (error) {
+        imagesArr[i] = {
+          original: defaultImage,
+          thumbnail: defaultImage,
+        };
+      }
+    }
+    return imagesArr;
+  };
+
   const [colorSelect, setColorSelect] = React.useState("0");
   const [sizeSelect, setSizeSelect] = React.useState("0");
   const classes = useStyles();
-  const images = [
-    {
-      original: product3,
-      thumbnail: product3,
-    },
-    {
-      original: product4,
-      thumbnail: product4,
-    },
-    {
-      original: product1,
-      thumbnail: product1,
-    },
-    {
-      original: product2,
-      thumbnail: product2,
-    },
-  ];
+
   return (
-    <div className={classes.productPage} style={{ direction: 'rtl' }}>
+    <div className={classes.productPage} style={{ direction: "rtl" }}>
       <Parallax
         image={require("assets/img/bg6.jpg")}
         filter="rose"
@@ -99,7 +98,8 @@ const ProductPage = (props) => {
           <GridContainer className={classes.titleRow}>
             <GridItem md={4} className={classes.mlAuto}>
               <Button color="white" className={classes.floatRight}>
-                <ShoppingCart /> 0 items
+                <ShoppingCart />
+                &nbsp; 0 מוצרים
               </Button>
             </GridItem>
           </GridContainer>
@@ -107,36 +107,34 @@ const ProductPage = (props) => {
       </Parallax>
 
       <div className={classNames(classes.section, classes.sectionGray)}>
-
         {selected !== null && (
           <div className={classes.container}>
-            <div className={classNames(classes.main, classes.mainRaised)} style={{ textAlign: 'right' }}>
+            <div
+              className={classNames(classes.main, classes.mainRaised)}
+              style={{ textAlign: "right" }}
+            >
               <GridContainer>
                 <GridItem md={6} sm={6}>
                   <ImageGallery
-                    showFullscreenButton={false}
-                    showPlayButton={false}
-                    startIndex={3}
-                    items={images}
+                    showFullscreenButton={true}
+                    showPlayButton={true}
+                    // startIndex={3}
+                    items={setImageArr(selected.images)}
                   />
                 </GridItem>
                 <GridItem md={6} sm={6}>
                   <h2 className={classes.title}>{selected.name}</h2>
-                  <h3 className={classes.mainPrice}>${selected.price}</h3>
-                  <Accordion className='z-222'
+                  <h3 className={classes.mainPrice}>₪{selected.price}</h3>
+                  <Accordion
                     active={0}
                     activeColor="rose"
                     collapses={[
                       {
                         title: "פרטים",
-                        content: (
-                          <p>
-                            {selected.description}
-                          </p>
-                        ),
+                        content: <p>{selected.description}</p>,
                       },
                       {
-                        title: "Designer Information",
+                        title: "פרטים על האמן",
                         content: (
                           <p>
                             An infusion of West Coast cool and New York
@@ -151,7 +149,7 @@ const ProductPage = (props) => {
                         ),
                       },
                       {
-                        title: "Details and Care",
+                        title: "קצת עלינו",
                         content: (
                           <ul>
                             <li>
@@ -171,7 +169,7 @@ const ProductPage = (props) => {
                   />
                   <GridContainer className={classes.pickSize}>
                     <GridItem md={6} sm={6}>
-                      <label>Select color</label>
+                      <label>בחר צבע</label>
                       <FormControl
                         fullWidth
                         className={classes.selectFormControl}
@@ -199,7 +197,7 @@ const ProductPage = (props) => {
                             }}
                             value="0"
                           >
-                            Rose
+                            ורוד
                           </MenuItem>
                           <MenuItem
                             classes={{
@@ -208,7 +206,7 @@ const ProductPage = (props) => {
                             }}
                             value="1"
                           >
-                            Gray
+                            אפור
                           </MenuItem>
                           <MenuItem
                             classes={{
@@ -217,13 +215,13 @@ const ProductPage = (props) => {
                             }}
                             value="2"
                           >
-                            White
+                            לבן
                           </MenuItem>
                         </Select>
                       </FormControl>
                     </GridItem>
                     <GridItem md={6} sm={6}>
-                      <label>Select size</label>
+                      <label>בחר גודל</label>
                       <FormControl
                         fullWidth
                         className={classes.selectFormControl}
@@ -251,7 +249,7 @@ const ProductPage = (props) => {
                             }}
                             value="0"
                           >
-                            Small
+                            קטן
                           </MenuItem>
                           <MenuItem
                             classes={{
@@ -260,7 +258,7 @@ const ProductPage = (props) => {
                             }}
                             value="1"
                           >
-                            Medium
+                            בינוני
                           </MenuItem>
                           <MenuItem
                             classes={{
@@ -269,16 +267,16 @@ const ProductPage = (props) => {
                             }}
                             value="2"
                           >
-                            Large
+                            גדול
                           </MenuItem>
                         </Select>
                       </FormControl>
                     </GridItem>
                   </GridContainer>
                   {/* <GridContainer className={classes.pullRight + 'add-to-cart'}> */}
-                  <GridContainer className='add-to-cart'>
+                  <GridContainer className="add-to-cart">
                     <Button round color="rose">
-                      Add to Cart &nbsp; <ShoppingCart />
+                      הוסף לעגלה &nbsp; <ShoppingCart />
                     </Button>
                   </GridContainer>
                 </GridItem>

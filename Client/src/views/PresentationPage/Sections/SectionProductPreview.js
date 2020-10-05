@@ -32,6 +32,7 @@ const SectionProductPreview = ({
     before_discount,
     wishlist,
     background,
+    images,
     link = '/product-page'
   },
 }) => {
@@ -43,7 +44,7 @@ const SectionProductPreview = ({
           <Link to={`/product-page/${en_name}`}>
             <img
               src={
-                background ? require(`assets/img/${background}`) : defaultImage
+                images[0] ? require(`assets/img/artists_picxel/${images[0]}`) : defaultImage
               }
               alt="..."
               style={{ height: "300px", objectFit: "cover" }}
@@ -53,7 +54,7 @@ const SectionProductPreview = ({
             className={classes.coloredShadow}
             style={{
               backgroundImage: `url(${
-                background ? require(`assets/img/${background}`) : defaultImage
+                images[0] ? require(`assets/img/artists_picxel/${images[0]}`) : defaultImage
               })`,
               opacity: 1,
             }}
@@ -69,11 +70,11 @@ const SectionProductPreview = ({
           <div className={classes.priceContainer}>
             <span className={classNames(classes.price, classes.priceOld)}>
               {" "}
-              €{before_discount}
+              ₪{before_discount}
             </span>
             <span className={classNames(classes.price, classes.priceNew)}>
               {" "}
-              €{price}
+              ₪{price}
             </span>
           </div>
           {/* eslint-disable-next-line */}
