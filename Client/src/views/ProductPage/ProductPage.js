@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react component used to create nice image meadia player
@@ -51,19 +51,23 @@ const ProductPage = (props) => {
   const en_name = props.match.params.en_name;
   const { getProduct, getProducts } = props;
 
+  let randomFourProducts = useState(undefined);
+  
   // const state = store.getState();
-  const { selected } = props.state;
+  const { selected, products } = props.state;
 
   useEffect(() => {
     async function get() {
       await getProducts();
       await getProduct(en_name);
+      randomFour();
     }
     get();
     // eslint-disable-next-line
   }, selected);
 
   let imagesArr = [];
+  // let randomFourProducts;
 
   const setImageArr = (arr) => {
     for (let i = 0; i < arr.length; i++) {
@@ -81,6 +85,17 @@ const ProductPage = (props) => {
       }
     }
     return imagesArr;
+  };
+
+  const randomFour = () => {
+    if (products !== null) {
+      for (let i = 0; i <= 3; i++) {
+        randomFourProducts[i] =
+          products[Math.floor(Math.random() * products.length)];
+      }
+    }
+    console.log(randomFourProducts);
+    return randomFourProducts;
   };
 
   const [colorSelect, setColorSelect] = React.useState("0");
@@ -286,8 +301,8 @@ const ProductPage = (props) => {
               <GridContainer>
                 <GridItem md={4} sm={4}>
                   <InfoArea
-                    title="2 Days Delivery"
-                    description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
+                    title="14 ימי משלוח"
+                    description="במהלך שנות ה-70 של המאה ה-20, עם התגבשות תחום לימודי התרבות, המונח טקסט התרחב להכללת כל פעילות אנושית"
                     icon={LocalShipping}
                     iconColor="info"
                     vertical
@@ -295,8 +310,8 @@ const ProductPage = (props) => {
                 </GridItem>
                 <GridItem md={4} sm={4}>
                   <InfoArea
-                    title="Refundable Policy"
-                    description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
+                    title="קנייה מאובטחת"
+                    description="במהלך שנות ה-70 של המאה ה-20, עם התגבשות תחום לימודי התרבות, המונח טקסט התרחב להכללת כל פעילות אנושית"
                     icon={VerifiedUser}
                     iconColor="success"
                     vertical
@@ -304,8 +319,8 @@ const ProductPage = (props) => {
                 </GridItem>
                 <GridItem md={4} sm={4}>
                   <InfoArea
-                    title="Popular Item"
-                    description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
+                    title="מוצר אהוב"
+                    description="במהלך שנות ה-70 של המאה ה-20, עם התגבשות תחום לימודי התרבות, המונח טקסט התרחב להכללת כל פעילות אנושית"
                     icon={Favorite}
                     iconColor="rose"
                     vertical
@@ -315,9 +330,15 @@ const ProductPage = (props) => {
             </div>
             <div className={classes.relatedProducts}>
               <h3 className={classNames(classes.title, classes.textCenter)}>
-                You may also be interested in:
+                אתה עשוי להתעניין גם ב:
               </h3>
               <GridContainer>
+                {products &&
+                  <div>
+                    lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
+                    {/* {products} */}
+                  </div>
+                }
                 <GridItem sm={6} md={3}>
                   <Card product>
                     <CardHeader image>
@@ -352,117 +373,6 @@ const ProductPage = (props) => {
                           classes={{ tooltip: classes.tooltip }}
                         >
                           <Button justIcon color="rose" simple>
-                            <Favorite />
-                          </Button>
-                        </Tooltip>
-                      </div>
-                    </CardFooter>
-                  </Card>
-                </GridItem>
-                <GridItem sm={6} md={3}>
-                  <Card product>
-                    <CardHeader image>
-                      <a href="#pablo">
-                        <img src={cardProduct3} alt="cardProduct3" />
-                      </a>
-                    </CardHeader>
-                    <CardBody>
-                      <h6 className={classes.cardCategory}>Popular</h6>
-                      <h4 className={classes.cardTitle}>Balmain</h4>
-                      <div className={classes.cardDescription}>
-                        Balmain{"'"}s mid-rise skinny jeans are cut with stretch
-                        to ensure they retain their second-skin fit but move
-                        comfortably.
-                      </div>
-                    </CardBody>
-                    <CardFooter className={classes.justifyContentBetween}>
-                      <div className={classes.price}>
-                        <h4>$459</h4>
-                      </div>
-                      <div className={classes.stats}>
-                        <Tooltip
-                          id="tooltip-top"
-                          title="Save to Wishlist"
-                          placement="top"
-                          classes={{ tooltip: classes.tooltip }}
-                        >
-                          <Button justIcon link>
-                            <Favorite />
-                          </Button>
-                        </Tooltip>
-                      </div>
-                    </CardFooter>
-                  </Card>
-                </GridItem>
-                <GridItem sm={6} md={3}>
-                  <Card product>
-                    <CardHeader image>
-                      <a href="#pablo">
-                        <img src={cardProduct4} alt="cardProduct4" />
-                      </a>
-                    </CardHeader>
-                    <CardBody>
-                      <h6 className={classes.cardCategory}>Popular</h6>
-                      <h4 className={classes.cardTitle}>Balenciaga</h4>
-                      <div className={classes.cardDescription}>
-                        Balenciaga{"'"}s black textured-leather wallet is
-                        finished with the label{"'"}s iconic {"'"}Giant{"'"}{" "}
-                        studs. This is where you can...
-                      </div>
-                    </CardBody>
-                    <CardFooter className={classes.justifyContentBetween}>
-                      <div className={classes.price}>
-                        <h4>$590</h4>
-                      </div>
-                      <div className={classes.stats}>
-                        <Tooltip
-                          id="tooltip-top"
-                          title="Save to Wishlist"
-                          placement="top"
-                          classes={{ tooltip: classes.tooltip }}
-                        >
-                          <Button justIcon color="rose" simple>
-                            <Favorite />
-                          </Button>
-                        </Tooltip>
-                      </div>
-                    </CardFooter>
-                  </Card>
-                </GridItem>
-                <GridItem sm={6} md={3}>
-                  <Card product>
-                    <CardHeader image>
-                      <a href="#pablo">
-                        <img src={cardProduct2} alt="cardProduct2" />
-                      </a>
-                    </CardHeader>
-                    <CardBody>
-                      <h6
-                        className={classNames(
-                          classes.cardCategory,
-                          classes.textRose
-                        )}
-                      >
-                        Trending
-                      </h6>
-                      <h4 className={classes.cardTitle}>Dolce & Gabbana</h4>
-                      <div className={classes.cardDescription}>
-                        Dolce & Gabbana{"'"}s {"'"}Greta{"'"} tote has been
-                        crafted in Italy from hard-wearing red textured-leather.
-                      </div>
-                    </CardBody>
-                    <CardFooter className={classes.justifyContentBetween}>
-                      <div className={classes.price}>
-                        <h4>$1,459</h4>
-                      </div>
-                      <div className={classes.stats}>
-                        <Tooltip
-                          id="tooltip-top"
-                          title="Save to Wishlist"
-                          placement="top"
-                          classes={{ tooltip: classes.tooltip }}
-                        >
-                          <Button justIcon link>
                             <Favorite />
                           </Button>
                         </Tooltip>

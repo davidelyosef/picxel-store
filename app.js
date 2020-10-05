@@ -1,13 +1,21 @@
-const express = require('express');
-const connectDB = require('./config/db');
-const path = require('path');
+const express = require("express");
+const connectDB = require("./config/db");
+const path = require("path");
 
 const app = express();
 
 // Connect Database
 connectDB();
 
-app.use('/api/products', require('./routes/products'));
+// Serve index.html:
+app.use(express.static(path.join(__dirname, "./build")));
+
+app.use("/api/products", require("./routes/products"));
+
+// Any other route - return index.html as we are SPA:
+app.use("*", (request, response) => {
+  response.sendFile(path.join(__dirname, "./build/index.html"));
+});
 
 const PORT = process.env.PORT || 8080;
 

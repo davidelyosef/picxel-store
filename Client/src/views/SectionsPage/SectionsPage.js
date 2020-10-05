@@ -1,21 +1,16 @@
-import React from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-// @material-ui/icons
-// core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
+import sectionsPageStyle from "assets/jss/material-kit-pro-react/views/sectionsPageStyle.js";
+import React from "react";
+import SectionBlogs from "./Sections/SectionBlogs.js";
+import SectionContacts from "./Sections/SectionContacts.js";
+import SectionFeatures from "./Sections/SectionFeatures.js";
 // sections of this Page
 import SectionHeaders from "./Sections/SectionHeaders.js";
-import SectionFeatures from "./Sections/SectionFeatures.js";
-import SectionBlogs from "./Sections/SectionBlogs.js";
-import SectionTeams from "./Sections/SectionTeams.js";
-import SectionProjects from "./Sections/SectionProjects.js";
 import SectionPricing from "./Sections/SectionPricing.js";
+import SectionProjects from "./Sections/SectionProjects.js";
+import SectionTeams from "./Sections/SectionTeams.js";
 import SectionTestimonials from "./Sections/SectionTestimonials.js";
-import SectionContacts from "./Sections/SectionContacts.js";
-
-import sectionsPageStyle from "assets/jss/material-kit-pro-react/views/sectionsPageStyle.js";
 
 const useStyles = makeStyles(sectionsPageStyle);
 

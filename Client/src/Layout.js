@@ -113,7 +113,7 @@ const Layout = () => {
             </ul>
             <div className={classNames(classes.pullCenter, classes.copyRight)}>
               Copyright &copy; {new Date().getFullYear()} Developed by{" "}
-              <a href="https://davidelyosef.web.app" target="_blank">
+              <a href="https://davidelyosef.web.app" rel="noopener noreferrer" target="_blank">
                 David-el Yosef
               </a>{" "}
               and Daphne Levy.
