@@ -14,11 +14,12 @@ import SectionProducts from "views/EcommercePage/Sections/SectionProducts.js";
 
 const useStyles = makeStyles(styles);
 
-export default function EcommercePage() {
+const EcommercePage = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
   });
+
   const classes = useStyles();
   return (
     <div>
@@ -39,10 +40,9 @@ export default function EcommercePage() {
               )}
             >
               <div className={classes.brand}>
-                <h1 className={classes.title}>Ecommerce Page!</h1>
+                <h1 className={classes.title}>דף המוצרים</h1>
                 <h4>
-                  Free global delivery for all products. Use coupon{" "}
-                  <b>25summer</b> for an extra 25% Off
+                  משלוח חינם לכל הארץ 20% הנחה על כל המוצרים{" "}
                 </h4>
               </div>
             </GridItem>
@@ -66,3 +66,5 @@ export default function EcommercePage() {
     </div>
   );
 }
+
+export default EcommercePage;

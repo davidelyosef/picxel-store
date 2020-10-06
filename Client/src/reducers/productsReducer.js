@@ -37,9 +37,7 @@ export default (state = initialState, action) => {
     case GET_PRODUCT:
       return {
         ...state,
-        selected: state.products.find((p) => {
-          if (p.en_name === action.payload) return p;
-        }),
+        selected: state.products.find((p) => p.en_name === action.payload ? p : console.log()),
         loading: false,
       };
 

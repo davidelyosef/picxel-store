@@ -1,73 +1,86 @@
 /*eslint-disable*/
-import React, { useEffect, useState } from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-// react component used to create nice image meadia player
-import ImageGallery from "react-image-gallery";
+import FormControl from "@material-ui/core/FormControl";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
+import Tooltip from "@material-ui/core/Tooltip";
+import Favorite from "@material-ui/icons/Favorite";
+import LocalShipping from "@material-ui/icons/LocalShipping";
 // @material-ui/icons
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
-import LocalShipping from "@material-ui/icons/LocalShipping";
 import VerifiedUser from "@material-ui/icons/VerifiedUser";
-import Favorite from "@material-ui/icons/Favorite";
-// core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Parallax from "components/Parallax/Parallax.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Footer from "components/Footer/Footer.js";
-import Button from "components/CustomButtons/Button.js";
-import Accordion from "components/Accordion/Accordion.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
-import Tooltip from "@material-ui/core/Tooltip";
-
-import productStyle from "assets/jss/material-kit-pro-react/views/productStyle.js";
-
 // images
 import cardProduct1 from "assets/img/examples/card-product1.jpg";
-import cardProduct3 from "assets/img/examples/card-product3.jpg";
-import cardProduct4 from "assets/img/examples/card-product4.jpg";
-import cardProduct2 from "assets/img/examples/card-product2.jpg";
 import defaultImage from "assets/img/placeholder.jpg";
-
-const useStyles = makeStyles(productStyle);
+import productStyle from "assets/jss/material-kit-pro-react/views/productStyle.js";
+// nodejs library that concatenates classes
+import classNames from "classnames";
+import Accordion from "components/Accordion/Accordion.js";
+import Card from "components/Card/Card.js";
+import CardBody from "components/Card/CardBody.js";
+import CardFooter from "components/Card/CardFooter.js";
+import CardHeader from "components/Card/CardHeader.js";
+import Button from "components/CustomButtons/Button.js";
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+import InfoArea from "components/InfoArea/InfoArea.js";
+import Parallax from "components/Parallax/Parallax.js";
+import React, { useEffect, useState } from "react";
+// import {usePath} from 'hookrouter';
+// react component used to create nice image meadia player
+import ImageGallery from "react-image-gallery";
+import { connect, useStore } from "react-redux";
+import { getProduct, getProducts } from "../../actions/productsActions";
 import "./style/productPage.scss";
 
-import { getProduct, getProducts } from "../../actions/productsActions";
-import { connect } from "react-redux";
+const useStyles = makeStyles(productStyle);
+
 // getProduct
-const ProductPage = (props) => {
-  const en_name = props.match.params.en_name;
-  const { getProduct, getProducts } = props;
+const ProductPage = ({
+  productsReducer: { products, selected },
+  getProducts,
+  getProduct,
+}) => {
+  const en_name = window.location.pathname;
+  const store = useStore();
 
-  let randomFourProducts = useState(undefined);
-  
-  // const state = store.getState();
-  const { selected, products } = props.state;
+  const [otherProducts, setOtherProducts] = useState([]);
+  let isIt = false;
 
+  const fourRandom = () => {
+    if (products !== null && selected !== null) {
+      products.map((p) => {
+        if (p._id !== selected._id) otherProducts.push(p);
+      });
+
+      // list of four
+      for (let i = 0; i < otherProducts.length - 4; i++) {
+        setOtherProducts(
+          otherProducts.splice(
+            Math.floor(Math.random() * otherProducts.length),
+            1
+          )
+        );
+      }
+      console.log(otherProducts);
+    }
+  };
+
+  // const path = usePath();
   useEffect(() => {
     async function get() {
       await getProducts();
-      await getProduct(en_name);
-      randomFour();
+      await getProduct(en_name.replace('/product-page/', ''));
+      products = store.getState().productsReducer.products;
+      selected = store.getState().productsReducer.selected;
+      fourRandom();
     }
     get();
     // eslint-disable-next-line
-  }, selected);
+  }, []);
 
   let imagesArr = [];
-  // let randomFourProducts;
 
   const setImageArr = (arr) => {
     for (let i = 0; i < arr.length; i++) {
@@ -85,17 +98,6 @@ const ProductPage = (props) => {
       }
     }
     return imagesArr;
-  };
-
-  const randomFour = () => {
-    if (products !== null) {
-      for (let i = 0; i <= 3; i++) {
-        randomFourProducts[i] =
-          products[Math.floor(Math.random() * products.length)];
-      }
-    }
-    console.log(randomFourProducts);
-    return randomFourProducts;
   };
 
   const [colorSelect, setColorSelect] = React.useState("0");
@@ -333,12 +335,9 @@ const ProductPage = (props) => {
                 אתה עשוי להתעניין גם ב:
               </h3>
               <GridContainer>
-                {products &&
-                  <div>
-                    lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
-                    {/* {products} */}
-                  </div>
-                }
+                {otherProducts.length > 3 && (
+                  <div>waasdasdasdasda sdasdasdasdasd </div>
+                )}
                 <GridItem sm={6} md={3}>
                   <Card product>
                     <CardHeader image>
@@ -390,7 +389,7 @@ const ProductPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  state: state.productsReducer,
+  productsReducer: state.productsReducer,
 });
 
 export default connect(
