@@ -18,6 +18,7 @@ import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
 import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-kit-pro-react/components/headerLinksStyle.js";
+import "./style/header.scss";
 
 const useStyles = makeStyles(styles);
 
@@ -74,7 +75,7 @@ export default function HeaderLinks(props) {
       </ListItem>
 
       <ListItem className={classes.listItem}>
-      <Button className={classes.navLink} color="transparent">
+        <Button className={classes.navLink} color="transparent">
           <Link to="/about-us" style={{ color: "white", fontSize: "19px" }}>
             אודות
           </Link>
@@ -82,15 +83,18 @@ export default function HeaderLinks(props) {
       </ListItem>
 
       <ListItem className={classes.listItem}>
-      <Button className={classes.navLink} color="transparent">
-          <Link to="/ecommerce-page" style={{ color: "white", fontSize: "19px" }}>
+        <Button className={classes.navLink} color="transparent">
+          <Link
+            to="/ecommerce-page"
+            style={{ color: "white", fontSize: "19px" }}
+          >
             מוצרים
           </Link>
         </Button>
       </ListItem>
 
       <ListItem className={classes.listItem}>
-      <Button className={classes.navLink} color="transparent">
+        <Button className={classes.navLink} color="transparent">
           <Link to="/contact-us" style={{ color: "white", fontSize: "19px" }}>
             צור קשר
           </Link>
@@ -101,7 +105,13 @@ export default function HeaderLinks(props) {
         <Link style={{ color: "#fff" }} to="/shopping-cart-page">
           <ShoppingCart
             className={classes.icons}
-            style={{ width: "32px", height: "32px" }}
+            style={{
+              width: "32px",
+              height: "32px",
+              position: "absolute",
+              right: "11px",
+              top: "10px",
+            }}
           />
         </Link>
       </ListItem>

@@ -1,9 +1,14 @@
 .add-to-cart {
   float: left;
 }
-.MuiButtonBase-root .makeStyles-expansionPanelSummaryExpandIcon-276 {
-  position: static;
-}
-.MuiInputBase-root .MuiSelect-icon  {
+.MuiButtonBase-root {
+  .makeStyles-expansionPanelSummaryExpandIcon-394 {
     position: static;
+  }
+  .makeStyles-expansionPanelSummaryExpandIcon-276 {
+    position: static;
+  }
+}
+.MuiInputBase-root .MuiSelect-icon {
+  position: static;
 }

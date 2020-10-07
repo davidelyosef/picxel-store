@@ -16,7 +16,6 @@ import presentationStyle from "assets/jss/material-kit-pro-react/views/presentat
 import SectionCollection from "./Sections/SectionCollection";
 import SectionProductPreview from "./Sections/SectionProductPreview";
 
-
 // redux
 import { connect } from "react-redux";
 import { getProducts } from "../../actions/productsActions";
