@@ -67,6 +67,7 @@ const SectionProductPreview = ({
           <p className={classes.cardDescription}>{description}</p>
         </CardBody>
         <CardFooter plain>
+          
           <div className={classes.priceContainer}>
             <span className={classNames(classes.price, classes.priceOld)}>
               {" "}

@@ -1,33 +1,29 @@
-import React from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-// core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
-import Button from "components/CustomButtons/Button.js";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
 // @material-ui icons
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-
-import styles from "assets/jss/material-kit-pro-react/views/ecommerceSections/latestOffersStyle.js";
-
-// import kadishman from "assets/img/examples/blog2.jpg";
-import kadishman from "assets/img/picxel/bb4-1.jpg";
-import gucci from "assets/img/examples/gucci.jpg";
-
-import tomFord from "assets/img/examples/tom-ford.jpg";
 import dolce from "assets/img/examples/dolce.jpg";
+// import kadishman from "assets/img/examples/blog2.jpg";
+import gucci from "assets/img/examples/gucci.jpg";
+import tomFord from "assets/img/examples/tom-ford.jpg";
+import styles from "assets/jss/material-kit-pro-react/views/ecommerceSections/latestOffersStyle.js";
+// nodejs library that concatenates classes
+import classNames from "classnames";
+import Card from "components/Card/Card.js";
+import CardBody from "components/Card/CardBody.js";
+import CardFooter from "components/Card/CardFooter.js";
+import CardHeader from "components/Card/CardHeader.js";
+import Button from "components/CustomButtons/Button.js";
+// core components
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+import React from "react";
 // redux
 import { connect } from "react-redux";
-import { getProducts } from "../../../actions/productsActions";
 import { Link } from "react-router-dom";
+import { getProducts } from "../../../actions/productsActions";
 
 const useStyles = makeStyles(styles);
 

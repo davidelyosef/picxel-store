@@ -4,34 +4,24 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import Tooltip from "@material-ui/core/Tooltip";
-import Favorite from "@material-ui/icons/Favorite";
-import LocalShipping from "@material-ui/icons/LocalShipping";
 // @material-ui/icons
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
-import VerifiedUser from "@material-ui/icons/VerifiedUser";
-// images
-import cardProduct1 from "assets/img/examples/card-product1.jpg";
 import defaultImage from "assets/img/placeholder.jpg";
 import productStyle from "assets/jss/material-kit-pro-react/views/productStyle.js";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 import Accordion from "components/Accordion/Accordion.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
-import CardHeader from "components/Card/CardHeader.js";
 import Button from "components/CustomButtons/Button.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
 import Parallax from "components/Parallax/Parallax.js";
 import React, { useEffect, useState } from "react";
-// import {usePath} from 'hookrouter';
 // react component used to create nice image meadia player
 import ImageGallery from "react-image-gallery";
 import { connect, useStore } from "react-redux";
 import { getProduct, getProducts } from "../../actions/productsActions";
+import ProductBadges from "./sections/ProductBadges";
+import ProductRecom from "./sections/ProductRecom";
 import "./style/productPage.scss";
 
 const useStyles = makeStyles(productStyle);
@@ -46,7 +36,6 @@ const ProductPage = ({
   const store = useStore();
 
   const [otherProducts, setOtherProducts] = useState([]);
-  let isIt = false;
 
   const fourRandom = () => {
     if (products !== null && selected !== null) {
@@ -63,18 +52,17 @@ const ProductPage = ({
           )
         );
       }
-      console.log(otherProducts);
+      setOtherProducts(otherProducts);
     }
   };
 
-  // const path = usePath();
   useEffect(() => {
     async function get() {
       await getProducts();
-      await getProduct(en_name.replace('/product-page/', ''));
+      await getProduct(en_name.replace("/product-page/", ""));
       products = store.getState().productsReducer.products;
       selected = store.getState().productsReducer.selected;
-      fourRandom();
+      await fourRandom();
     }
     get();
     // eslint-disable-next-line
@@ -141,7 +129,23 @@ const ProductPage = ({
                 </GridItem>
                 <GridItem md={6} sm={6}>
                   <h2 className={classes.title}>{selected.name}</h2>
-                  <h3 className={classes.mainPrice}>₪{selected.price}</h3>
+                  <h3
+                    className={classes.mainPrice}
+                    style={{ display: "inline-block" }}
+                  >
+                    ₪{selected.price}
+                  </h3>
+                  <h3
+                    className={classes.mainPrice}
+                    style={{
+                      textDecoration: "line-through",
+                      display: "inline-block",
+                      color: "#9a9a9a",
+                    }}
+                  >
+                    ₪{selected.before_discount}
+                  </h3>
+                  
                   <Accordion
                     active={0}
                     activeColor="rose"
@@ -157,10 +161,10 @@ const ProductPage = ({
                             An infusion of West Coast cool and New York
                             attitude, Rebecca Minkoff is synonymous with It girl
                             style. Minkoff burst on the fashion scene with her
-                            best-selling {"'"}Morning After Bag{"'"} and later
-                            expanded her offering with the Rebecca Minkoff
-                            Collection - a range of luxe city staples with a{" "}
-                            {'"'}
+                            best-selling {"'"}
+                            Morning After Bag{"'"} and later expanded her
+                            offering with the Rebecca Minkoff Collection - a
+                            range of luxe city staples with a {'"'}
                             downtown romantic{'"'} theme.
                           </p>
                         ),
@@ -290,7 +294,7 @@ const ProductPage = ({
                       </FormControl>
                     </GridItem>
                   </GridContainer>
-                  {/* <GridContainer className={classes.pullRight + 'add-to-cart'}> */}
+
                   <GridContainer className="add-to-cart">
                     <Button round color="rose">
                       הוסף לעגלה &nbsp; <ShoppingCart />
@@ -299,86 +303,19 @@ const ProductPage = ({
                 </GridItem>
               </GridContainer>
             </div>
-            <div className={classNames(classes.features, classes.textCenter)}>
-              <GridContainer>
-                <GridItem md={4} sm={4}>
-                  <InfoArea
-                    title="14 ימי משלוח"
-                    description="במהלך שנות ה-70 של המאה ה-20, עם התגבשות תחום לימודי התרבות, המונח טקסט התרחב להכללת כל פעילות אנושית"
-                    icon={LocalShipping}
-                    iconColor="info"
-                    vertical
-                  />
-                </GridItem>
-                <GridItem md={4} sm={4}>
-                  <InfoArea
-                    title="קנייה מאובטחת"
-                    description="במהלך שנות ה-70 של המאה ה-20, עם התגבשות תחום לימודי התרבות, המונח טקסט התרחב להכללת כל פעילות אנושית"
-                    icon={VerifiedUser}
-                    iconColor="success"
-                    vertical
-                  />
-                </GridItem>
-                <GridItem md={4} sm={4}>
-                  <InfoArea
-                    title="מוצר אהוב"
-                    description="במהלך שנות ה-70 של המאה ה-20, עם התגבשות תחום לימודי התרבות, המונח טקסט התרחב להכללת כל פעילות אנושית"
-                    icon={Favorite}
-                    iconColor="rose"
-                    vertical
-                  />
-                </GridItem>
-              </GridContainer>
-            </div>
+
+            {/* Badges */}
+            <ProductBadges />
+
             <div className={classes.relatedProducts}>
               <h3 className={classNames(classes.title, classes.textCenter)}>
                 אתה עשוי להתעניין גם ב:
               </h3>
               <GridContainer>
-                {otherProducts.length > 3 && (
-                  <div>waasdasdasdasda sdasdasdasdasd </div>
-                )}
-                <GridItem sm={6} md={3}>
-                  <Card product>
-                    <CardHeader image>
-                      <a href="#pablo">
-                        <img src={cardProduct1} alt="cardProduct" />
-                      </a>
-                    </CardHeader>
-                    <CardBody>
-                      <h6
-                        className={classNames(
-                          classes.cardCategory,
-                          classes.textRose
-                        )}
-                      >
-                        Trending
-                      </h6>
-                      <h4 className={classes.cardTitle}>Dolce & Gabbana</h4>
-                      <div className={classes.cardDescription}>
-                        Dolce & Gabbana{"'"}s {"'"}Greta{"'"} tote has been
-                        crafted in Italy from hard-wearing red textured-leather.
-                      </div>
-                    </CardBody>
-                    <CardFooter className={classes.justifyContentBetween}>
-                      <div className={classes.price}>
-                        <h4>$1,459</h4>
-                      </div>
-                      <div className={classes.stats}>
-                        <Tooltip
-                          id="tooltip-top"
-                          title="Save to Wishlist"
-                          placement="top"
-                          classes={{ tooltip: classes.tooltip }}
-                        >
-                          <Button justIcon color="rose" simple>
-                            <Favorite />
-                          </Button>
-                        </Tooltip>
-                      </div>
-                    </CardFooter>
-                  </Card>
-                </GridItem>
+                {otherProducts &&
+                  otherProducts.map((p) => (
+                    <ProductRecom product={p} key={p._id} />
+                  ))}
               </GridContainer>
             </div>
           </div>
