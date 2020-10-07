@@ -1,11 +1,18 @@
 .collection-home {
-    margin-top: 0;
-    margin-bottom: 0;
-    height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 100%;
 }
-.makeStyles-cardBackground-216::before {
-    background-color: rgba(0, 0, 0, 0.2);
-}
-.makeStyles-cardBackground-216::after {
-    background-color: rgba(0, 0, 0, 0.2);
+.MuiGrid-root {
+  a {
+    .makeStyles-cardBackground-216 {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .makeStyles-cardBackground-216::before {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .makeStyles-cardBackground-216::after {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
 }

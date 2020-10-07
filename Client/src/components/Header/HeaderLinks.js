@@ -108,7 +108,6 @@ export default function HeaderLinks(props) {
             style={{
               width: "32px",
               height: "32px",
-              position: "absolute",
               right: "11px",
               top: "10px",
             }}

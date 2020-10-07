@@ -51,12 +51,12 @@ const PresentationPage = ({ productsReducer: { products }, getProducts }) => {
         <GridContainer className={classes.collections}>
           <SectionCollection
             link="ecommerce-page"
-            name="Artists"
+            name="אמנים"
             bg="https://cdn.shopify.com/s/files/1/0269/4725/6407/products/281fec30-a3c5-4c01-918f-b57873dc23ec_360x.jpg?v=1600120666"
           />
           <SectionCollection
             link="ecommerce-page"
-            name="Make Your Own Art"
+            name="צור את האמנות שלך"
             bg={bb41}
           />
         </GridContainer>
