@@ -29,6 +29,7 @@ import Button from "components/CustomButtons/Button.js";
 import Footer from "components/Footer/Footer.js";
 
 import contactUsStyle from "assets/jss/material-kit-pro-react/views/contactUsStyle.js";
+import "./style/contactUs.scss";
 
 const CustomSkinMap = withScriptjs(
   withGoogleMap(() => (
@@ -139,7 +140,9 @@ export default function ContactUsPage() {
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.contactContent}>
           <div className={classes.container}>
-            <h2 className={classes.title} style={{ textAlign: 'end' }}>צור קשר</h2>
+            <h2 className={classes.title} style={{ textAlign: "end" }}>
+              צור קשר
+            </h2>
             <GridContainer>
               <GridItem md={4} sm={4}>
                 <InfoArea
@@ -179,37 +182,43 @@ export default function ContactUsPage() {
                   <br />
                   <br />
                 </p>
-                <form dir="rtl">
+                <form dir="rtl" style={{ direction: "rtl" }}>
                   <CustomInput
-                    labelText="שם מלא"
-                    id="float"
-                    formControlProps={{
-                      fullWidth: true,
-                    }}
-                  />
-                  <CustomInput
-                    labelText="כתובת דואר אלקטרוני"
-                    id="float"
-                    formControlProps={{
-                      fullWidth: true,
-                    }}
-                  />
-                  <CustomInput
-                    labelText="טלפון"
-                    id="float"
-                    formControlProps={{
-                      fullWidth: true,
-                    }}
-                  />
-                  <CustomInput
-                    labelText="ההודעה שלך"
-                    id="float"
-                    formControlProps={{
-                      fullWidth: true,
-                    }}
                     inputProps={{
+                      placeholder: "שם מלא",
+                    }}
+                    id="float"
+                    formControlProps={{
+                      fullWidth: true,
+                    }}
+                  />
+                  <CustomInput
+                    inputProps={{
+                      placeholder: 'הדוא"ל שלך',
+                    }}
+                    id="float"
+                    formControlProps={{
+                      fullWidth: true,
+                    }}
+                  />
+                  <CustomInput
+                    inputProps={{
+                      placeholder: 'טלפון',
+                    }}
+                    id="float"
+                    formControlProps={{
+                      fullWidth: true,
+                    }}
+                  />
+                  <CustomInput
+                    inputProps={{
+                      placeholder: "הודעה",
                       multiline: true,
                       rows: 6,
+                    }}
+                    id="float"
+                    formControlProps={{
+                      fullWidth: true,
                     }}
                   />
                   <div className={classes.textCenter}>
