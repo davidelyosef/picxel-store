@@ -49,7 +49,7 @@ const SectionLatestOffers = ({
             <h2 style={{ textAlign: 'right' }}>קוקו</h2>
             <GridContainer>
               {products.map((p) => (
-                <GridItem md={4} sm={4}>
+                <GridItem md={4} sm={4} key={p._id}>
                   <Card product plain>
                     <CardHeader image plain>
                       <Link to={`/product-page/${p.en_name}`}>

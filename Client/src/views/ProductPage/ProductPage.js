@@ -36,6 +36,7 @@ const ProductPage = ({
   const store = useStore();
 
   const [otherProducts, setOtherProducts] = useState([]);
+  const [theCart, setTheCart] = useState(localStorage.getItem("cart"));
 
   const fourRandom = () => {
     if (products !== null && selected !== null) {
@@ -88,6 +89,29 @@ const ProductPage = ({
     return imagesArr;
   };
 
+  const addToCart = () => {
+    const add = { _id: selected._id, quantity: 1 };
+    let cart = localStorage.getItem("cart");
+    let exist = false;
+
+    if (cart) {
+      cart = JSON.parse(cart);
+      cart.find(c => {
+        if (c._id === add._id) {
+          exist = true;
+          c.quantity += 1;
+        }
+      });
+      exist ? '' : cart.push(add);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      // setTheCart(JSON.stringify(cart));
+      return;
+    }
+
+    localStorage.setItem("cart", JSON.stringify([add]));
+    setTheCart(JSON.stringify([add]));
+  };
+
   const [colorSelect, setColorSelect] = React.useState("0");
   const [sizeSelect, setSizeSelect] = React.useState("0");
   const classes = useStyles();
@@ -104,7 +128,7 @@ const ProductPage = ({
             <GridItem md={4} className={classes.mlAuto}>
               <Button color="white" className={classes.floatRight}>
                 <ShoppingCart />
-                &nbsp; 0 מוצרים
+                &nbsp; {theCart ? JSON.parse(theCart).length : 0} מוצרים
               </Button>
             </GridItem>
           </GridContainer>
@@ -145,7 +169,7 @@ const ProductPage = ({
                   >
                     ₪{selected.before_discount}
                   </h3>
-                  
+
                   <Accordion
                     active={0}
                     activeColor="rose"
@@ -296,9 +320,11 @@ const ProductPage = ({
                   </GridContainer>
 
                   <GridContainer className="add-to-cart">
-                    <Button round color="rose">
-                      הוסף לעגלה &nbsp; <ShoppingCart />
-                    </Button>
+                    <div onClick={addToCart}>
+                      <Button round color="rose">
+                        הוסף לעגלה &nbsp; <ShoppingCart />
+                      </Button>
+                    </div>
                   </GridContainer>
                 </GridItem>
               </GridContainer>
