@@ -3,6 +3,7 @@ import {
   GET_PRODUCTS,
   PRODUCTS_ERROR,
   SET_LOADING,
+  GET_CART_PRODUCTS,
 } from "../actions/types";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   selected: null,
   loading: false,
   error: null,
+  cart: null,
 };
 
 export default (state = initialState, action) => {
@@ -40,6 +42,13 @@ export default (state = initialState, action) => {
         selected: state.products.find((p) => p.en_name === action.payload ? p : console.log()),
         loading: false,
       };
+      
+    case GET_CART_PRODUCTS:
+      return {
+        ...state,
+        cart: action.payload,
+        loading: false
+      }
 
     default:
       return state;

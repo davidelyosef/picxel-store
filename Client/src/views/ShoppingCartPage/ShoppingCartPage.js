@@ -33,36 +33,22 @@ import product3 from "assets/img/product3.jpg";
 
 // redux
 import { connect, useStore } from "react-redux";
-import { getProduct, getProducts } from "../../actions/productsActions";
+import { getCartProducts, getProducts } from "../../actions/productsActions";
 
 const useStyles = makeStyles(shoppingCartStyle);
 
-const ShoppingCartPage = ({ productsReducer: { products }, getProducts }) => {
-  const [cart, setCart] = useState(localStorage.getItem("cart"));
+const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
   const [cartProducts, setCartProducts] = useState([]);
   const store = useStore();
-  let parse;
 
   useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
 
     async function go() {
-      if (products === null) {
-        await getProducts();
-        products = store.getState().productsReducer.products;
-      }
-
-      parse = JSON.parse(cart);
-      parse.map((cartItem) => {
-        products.map((product) => {
-          cartItem._id === product._id
-            ? setCartProducts(cartProducts.push(product))
-            : "";
-        });
-      });
-      console.log(cartProducts);
-      setCartProducts(cartProducts);
+      await getCartProducts();
+      cart = await store.getState().productsReducer.cart;
+      console.log(cart);
     }
     go();
   }, []);
@@ -97,16 +83,15 @@ const ShoppingCartPage = ({ productsReducer: { products }, getProducts }) => {
             <CardBody plain>
               <h3 className={classes.cardTitle}>עגלת קניות</h3>
 
-              {cartProducts.length >= 1 &&
-                cartProducts.map(p => <div key={p._id}>{p.en_name}</div>)
-                // cartProducts.length
-              }
+              {cart &&
+                cart.map((p) => <div key={p._id}>{p.en_name}</div>)}
 
-              {cartProducts.length >= 1 ? (
+              {cart ? (
                 <Table
                   tableHead={["", "מוצר", "מחיר", "כמות", "", "סך הכל", ""]}
                   tableData={[
-                    // cartProducts.map(p => )
+                    // cartProducts.map(p =>
+                    // for (let i = 0; i < cartProducts.length; i++) { return
                     [
                       // Product image
                       <div className={classes.imgContainer} key={1}>
@@ -171,8 +156,10 @@ const ShoppingCartPage = ({ productsReducer: { products }, getProducts }) => {
                           <Close />
                         </Button>
                       </Tooltip>,
-                    ]
-                    ,{
+                    ],
+                    // }
+                    // )
+                    {
                       purchase: true,
                       colspan: "3",
                       amount: (
@@ -211,7 +198,7 @@ const ShoppingCartPage = ({ productsReducer: { products }, getProducts }) => {
                   customClassesForCells={[1, 2, 3, 4, 5, 6]}
                 />
               ) : (
-                <h3>No Products in cart</h3>
+                <h3>אין מוצרים בעגלת הקניות</h3>
               )}
             </CardBody>
           </Card>
@@ -227,5 +214,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { getProducts }
+  { getCartProducts }
 )(ShoppingCartPage);
