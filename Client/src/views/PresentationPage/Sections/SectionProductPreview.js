@@ -38,7 +38,7 @@ const SectionProductPreview = ({
 }) => {
   const classes = useStyles();
   return (
-    <GridItem md={4} sm={4}>
+    <GridItem md={3} sm={4} xs={6}>
       <Card product plain>
         <CardHeader image plain>
           <Link to={`/product-page/${en_name}`}>

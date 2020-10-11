@@ -1,9 +1,20 @@
-import React from "react";
-import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router";
-
+// @material-ui/core components
+import { makeStyles } from "@material-ui/core/styles";
+import presentationStyle from "assets/jss/material-kit-pro-react/views/presentationStyle.js";
 import "assets/scss/material-kit-pro-react.scss?v=1.8.0";
-
+// nodejs library that concatenates classes
+import classNames from "classnames";
+import Button from "components/CustomButtons/Button.js";
+import Footer from "components/Footer/Footer.js";
+// core components
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+import Header from "components/Header/Header.js";
+import HeaderLinks from "components/Header/HeaderLinks.js";
+import PreFooter from "components/PreFooter/PreFooter";
+import { createBrowserHistory } from "history";
+import React from "react";
+import { Route, Router, Switch } from "react-router";
 // pages for this product
 import AboutUsPage from "views/AboutUsPage/AboutUsPage.js";
 import BlogPostPage from "views/BlogPostPage/BlogPostPage.js";
@@ -11,32 +22,16 @@ import BlogPostsPage from "views/BlogPostsPage/BlogPostsPage.js";
 import ComponentsPage from "views/ComponentsPage/ComponentsPage.js";
 import ContactUsPage from "views/ContactUsPage/ContactUsPage.js";
 import EcommercePage from "views/EcommercePage/EcommercePage.js";
+import ErrorPage from "views/ErrorPage/ErrorPage.js";
 import LandingPage from "views/LandingPage/LandingPage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
 import PresentationPage from "views/PresentationPage/PresentationPage.js";
 import PricingPage from "views/PricingPage/PricingPage.js";
-import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import ProductPage from "views/ProductPage/ProductPage.js";
+import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import SectionsPage from "views/SectionsPage/SectionsPage.js";
 import ShoppingCartPage from "views/ShoppingCartPage/ShoppingCartPage.js";
 import SignupPage from "views/SignupPage/SignupPage.js";
-import ErrorPage from "views/ErrorPage/ErrorPage.js";
-
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Footer from "components/Footer/Footer.js";
-import presentationStyle from "assets/jss/material-kit-pro-react/views/presentationStyle.js";
-import PreFooter from "components/PreFooter/PreFooter";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-// @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-// core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Mail from "@material-ui/icons/Mail";
 
 const useStyles = makeStyles(presentationStyle);
 
@@ -142,9 +137,6 @@ const Layout = () => {
                   <a href="#pablo">About us</a>
                 </li>
                 <li>
-                  <a href="#pablo">Presentation</a>
-                </li>
-                <li>
                   <a href="#pablo">Contact us</a>
                 </li>
               </ul>
@@ -162,28 +154,6 @@ const Layout = () => {
                   <a href="#pablo">Licenses</a>
                 </li>
               </ul>
-            </GridItem>
-            <GridItem xs={12} sm={4} md={4}>
-              <h5>Subscribe to Newsletter</h5>
-              <p>
-                Join our newsletter and get news in your inbox every week! We
-                hate spam too, so no worries about this.
-              </p>
-              <form>
-                <CustomInput
-                  id="footeremail"
-                  formControlProps={{
-                    fullWidth: false,
-                    className: classes.customFormControl,
-                  }}
-                  inputProps={{
-                    placeholder: "Your Email...",
-                  }}
-                />
-                <Button color="primary" justIcon>
-                  <Mail />
-                </Button>
-              </form>
             </GridItem>
           </GridContainer>
         </div>

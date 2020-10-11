@@ -19,6 +19,9 @@ import SectionProductPreview from "./Sections/SectionProductPreview";
 // redux
 import { connect } from "react-redux";
 import { getProducts } from "../../actions/productsActions";
+import SectionDescription from "./Sections/SectionDescription";
+
+import "./style/sectionCollection.scss";
 
 const useStyles = makeStyles(presentationStyle);
 
@@ -48,6 +51,9 @@ const PresentationPage = ({ productsReducer: { products }, getProducts }) => {
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
+
+        <SectionDescription />
+
         <GridContainer className={classes.collections}>
           <SectionCollection
             link="ecommerce-page"

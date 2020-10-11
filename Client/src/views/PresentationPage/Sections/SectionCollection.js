@@ -7,7 +7,7 @@ import CardBody from "components/Card/CardBody.js";
 import GridItem from "components/Grid/GridItem.js";
 import React from "react";
 import { Link } from "react-router-dom";
-import "../style//sectionCollection.scss";
+import "../style/sectionCollection.scss";
 
 const useStyles = makeStyles(profilePageStyle);
 

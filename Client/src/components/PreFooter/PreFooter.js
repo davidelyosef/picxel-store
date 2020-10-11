@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import bg7 from "assets/img/bg7.jpg";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
@@ -19,66 +19,70 @@ const useStyles = makeStyles(styles);
 
 export default function PreFooter() {
   const classes = useStyles();
+  const [value, setValue] = useState("");
+
+  const sendMail = () => {
+    console.log(value);
+  }
 
   return (
     <div
-        className={classNames(
-          classes.subscribeLine,
-          classes.subscribeLineImage
-        )}
-        style={{ backgroundImage: `url(${bg7})` }}
-      >
-        <div className={classes.container}>
-          <GridContainer>
-            <GridItem
-              xs={12}
-              sm={6}
-              md={6}
-              className={classNames(classes.mlAuto, classes.mrAuto)}
-            >
-              <div className={classes.textCenter}>
-                <h3 className={classes.title}>הירשם לניוזלטר שלנו</h3>
-                <p className={classes.description}>
+      className={classNames(classes.subscribeLine, classes.subscribeLineImage)}
+      style={{ backgroundImage: `url(${bg7})` }}
+    >
+      <div className={classes.container}>
+        <GridContainer>
+          <GridItem
+            xs={12}
+            sm={6}
+            md={6}
+            className={classNames(classes.mlAuto, classes.mrAuto)}
+          >
+            <div className={classes.textCenter}>
+              <h3 className={classes.title}>הירשם לניוזלטר שלנו</h3>
+              <p className={classes.description}>
                 מבצעים, מוצרים חדשים ומכירות. ישירות לתיבת הדואר הנכנס שלך
-                </p>
-              </div>
-              <Card raised className={classes.card}>
-                <CardBody className={classes.cardBody}>
-                  <form style={{ direction: 'rtl' }}>
-                    <GridContainer>
-                      <GridItem xs={12} sm={6} md={6} lg={8}>
-                        <CustomInput
-                          id="emailPreFooter"
-                          formControlProps={{
-                            fullWidth: true,
-                            className: classes.cardForm
-                          }}
-                          inputProps={{
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                <Mail />
-                              </InputAdornment>
-                            ),
-                            placeholder: 'הדוא"ל שלך'
-                          }}
-                        />
-                      </GridItem>
-                      <GridItem xs={12} sm={6} md={6} lg={4}>
-                        <Button
-                          color="primary"
-                          block
-                          className={classes.subscribeButton}
-                        >
-                          הירשם
-                        </Button>
-                      </GridItem>
-                    </GridContainer>
-                  </form>
-                </CardBody>
-              </Card>
-            </GridItem>
-          </GridContainer>
-        </div>
+              </p>
+            </div>
+            <Card raised className={classes.card}>
+              <CardBody className={classes.cardBody}>
+                <form style={{ direction: "rtl" }}>
+                  <GridContainer>
+                    <GridItem xs={12} sm={6} md={6} lg={8}>
+                      <CustomInput
+                        onChange={e => setValue(e.target.value)}
+                        id="emailPreFooter"
+                        formControlProps={{
+                          fullWidth: true,
+                          className: classes.cardForm,
+                        }}
+                        inputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <Mail />
+                            </InputAdornment>
+                          ),
+                          placeholder: 'הדוא"ל שלך',
+                        }}
+                      />
+                    </GridItem>
+                    <GridItem xs={12} sm={6} md={6} lg={4}>
+                      <Button
+                        onClick={sendMail}
+                        color="primary"
+                        block
+                        className={classes.subscribeButton}
+                      >
+                        הירשם
+                      </Button>
+                    </GridItem>
+                  </GridContainer>
+                </form>
+              </CardBody>
+            </Card>
+          </GridItem>
+        </GridContainer>
       </div>
+    </div>
   );
 }
