@@ -34,11 +34,11 @@ import product3 from "assets/img/product3.jpg";
 // redux
 import { connect, useStore } from "react-redux";
 import { getCartProducts, getProducts } from "../../actions/productsActions";
+import CartItem from "./sections/CartItem";
 
 const useStyles = makeStyles(shoppingCartStyle);
 
 const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
-  const [cartProducts, setCartProducts] = useState([]);
   const store = useStore();
 
   useEffect(() => {
@@ -83,120 +83,158 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
             <CardBody plain>
               <h3 className={classes.cardTitle}>עגלת קניות</h3>
 
-              {cart &&
-                cart.map((p) => <div key={p._id}>{p.en_name}</div>)}
+              <Table
+                tableHead={["", "מוצר", "מחיר", "כמות", "", "סך הכל", ""]}
+                tableData={[]}
+              />
 
               {cart ? (
-                <Table
-                  tableHead={["", "מוצר", "מחיר", "כמות", "", "סך הכל", ""]}
-                  tableData={[
-                    // cartProducts.map(p =>
-                    // for (let i = 0; i < cartProducts.length; i++) { return
-                    [
-                      // Product image
-                      <div className={classes.imgContainer} key={1}>
-                        <img src={product1} alt="..." className={classes.img} />
-                      </div>,
+                <div>
+                  {cart.map((p) => (
+                    <Table
+                      key={p._id}
+                      tableData={[
+                        [
+                          // Product image
+                          <div className={classes.imgContainer} key={1}>
+                            <img
+                              // require(`assets/img/artists_picxel/${p.images[0]}`)
+                              src={require(`assets/img/artists_picxel/${
+                                p.images[0]
+                              }`)}
+                              alt={p.en_name}
+                              className={classes.img}
+                            />
+                          </div>,
 
-                      // Product name
-                      <span key={1}>
-                        <a href="#jacket" className={classes.tdNameAnchor}>
-                          Spring Jacket
-                        </a>
-                        <br />
-                        <small className={classes.tdNameSmall}>
-                          by Dolce&amp;Gabbana
-                        </small>
-                      </span>,
+                          // Product name
+                          <span key={1}>
+                            <a
+                              href={`/product-page/${p.en_name}`}
+                              className={classes.tdNameAnchor}
+                            >
+                              {p.name}
+                            </a>
+                            <br />
+                            <small className={classes.tdNameSmall}>
+                              by Dolce&amp;Gabbana
+                            </small>
+                          </span>,
 
-                      // Product price
-                      <span key={1}>
-                        <small className={classes.tdNumberSmall}>₪</small> 549
-                      </span>,
+                          // Product price
+                          <span key={1}>
+                            <small className={classes.tdNumberSmall}>₪</small>{" "}
+                            {p.price}
+                          </span>,
 
-                      // Quantity
-                      "1",
+                          // Quantity
+                          `${p.quantity}`,
 
-                      // + and - buttons
-                      <span key={1}>
-                        <div className={classes.buttonGroup}>
-                          <Button
-                            color="info"
-                            size="sm"
-                            round
-                            className={classes.firstButton}
+                          // + and - buttons
+                          <span key={1}>
+                            <div className={classes.buttonGroup}>
+                              <Button
+                                color="info"
+                                size="sm"
+                                round
+                                className={classes.firstButton}
+                              >
+                                <Remove />
+                              </Button>
+                              <Button
+                                color="info"
+                                size="sm"
+                                round
+                                className={classes.lastButton}
+                              >
+                                <Add />
+                              </Button>
+                            </div>
+                          </span>,
+
+                          // final price
+                          <span key={1}>
+                            <small className={classes.tdNumberSmall}>₪</small>{" "}
+                            {p.quantity * p.price}
+                          </span>,
+
+                          // X button
+                          <Tooltip
+                            key={1}
+                            id="close1"
+                            title="Remove item"
+                            placement="left"
+                            classes={{ tooltip: classes.tooltip }}
                           >
-                            <Remove />
-                          </Button>
-                          <Button
-                            color="info"
-                            size="sm"
-                            round
-                            className={classes.lastButton}
-                          >
-                            <Add />
-                          </Button>
-                        </div>
-                      </span>,
+                            <Button link className={classes.actionButton}>
+                              <Close />
+                            </Button>
+                          </Tooltip>,
+                        ],
+                      ]}
+                      tableShopping
+                      customHeadCellClasses={[
+                        classes.textCenter,
+                        classes.description,
+                        classes.description,
+                        classes.textRight,
+                        classes.textRight,
+                        classes.textRight,
+                      ]}
+                      customHeadClassesForCells={[0, 2, 3, 4, 5, 6]}
+                      customCellClasses={[
+                        classes.tdName,
+                        classes.customFont,
+                        classes.customFont,
+                        classes.tdNumber,
+                        classes.tdNumber + " " + classes.tdNumberAndButtonGroup,
+                        classes.tdNumber + " " + classes.textCenter,
+                      ]}
+                      customClassesForCells={[1, 2, 3, 4, 5, 6]}
+                    />
+                  ))}
 
-                      // final price
-                      <span key={1}>
-                        <small className={classes.tdNumberSmall}>₪</small> 549
-                      </span>,
-
-                      // X button
-                      <Tooltip
-                        key={1}
-                        id="close1"
-                        title="Remove item"
-                        placement="left"
-                        classes={{ tooltip: classes.tooltip }}
-                      >
-                        <Button link className={classes.actionButton}>
-                          <Close />
-                        </Button>
-                      </Tooltip>,
-                    ],
-                    // }
-                    // )
-                    {
-                      purchase: true,
-                      colspan: "3",
-                      amount: (
-                        <span>
-                          <small>₪</small>2,346
-                        </span>
-                      ),
-                      col: {
-                        colspan: 3,
-                        text: (
-                          <Button color="info" round>
-                            Complete Purchase <KeyboardArrowRight />
-                          </Button>
+                  <Table
+                    tableData={[
+                      {
+                        purchase: true,
+                        colspan: "3",
+                        amount: (
+                          <span>
+                            <small>₪</small>2,346
+                          </span>
                         ),
+                        col: {
+                          colspan: 3,
+                          text: (
+                            <Button color="info" round>
+                              Complete Purchase <KeyboardArrowRight />
+                            </Button>
+                          ),
+                        },
                       },
-                    },
-                  ]}
-                  tableShopping
-                  customHeadCellClasses={[
-                    classes.textCenter,
-                    classes.description,
-                    classes.description,
-                    classes.textRight,
-                    classes.textRight,
-                    classes.textRight,
-                  ]}
-                  customHeadClassesForCells={[0, 2, 3, 4, 5, 6]}
-                  customCellClasses={[
-                    classes.tdName,
-                    classes.customFont,
-                    classes.customFont,
-                    classes.tdNumber,
-                    classes.tdNumber + " " + classes.tdNumberAndButtonGroup,
-                    classes.tdNumber + " " + classes.textCenter,
-                  ]}
-                  customClassesForCells={[1, 2, 3, 4, 5, 6]}
-                />
+                    ]}
+                    tableShopping
+                    customHeadCellClasses={[
+                      classes.textCenter,
+                      classes.description,
+                      classes.description,
+                      classes.textRight,
+                      classes.textRight,
+                      classes.textRight,
+                    ]}
+                    customHeadClassesForCells={[0, 2, 3, 4, 5, 6]}
+                    customCellClasses={[
+                      classes.tdName,
+                      classes.customFont,
+                      classes.customFont,
+                      classes.tdNumber,
+                      classes.tdNumber + " " + classes.tdNumberAndButtonGroup,
+                      classes.tdNumber + " " + classes.textCenter,
+                    ]}
+                    customClassesForCells={[1, 2, 3, 4, 5, 6]}
+                  />
+                </div>
               ) : (
                 <h3>אין מוצרים בעגלת הקניות</h3>
               )}

@@ -11,6 +11,7 @@ connectDB();
 app.use(express.static(path.join(__dirname, "./build")));
 
 app.use("/api/products", require("./routes/products"));
+app.use("/api/collections", require("./routes/collections"));
 
 // Any other route - return index.html as we are SPA:
 app.use("*", (request, response) => {

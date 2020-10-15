@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -14,24 +14,43 @@ import SectionContent from "views/PresentationPage/Sections/SectionContent.js";
 import presentationStyle from "assets/jss/material-kit-pro-react/views/presentationStyle.js";
 
 import SectionCollection from "./Sections/SectionCollection";
-import SectionProductPreview from "./Sections/SectionProductPreview";
 
 // redux
-import { connect } from "react-redux";
-import { getProducts } from "../../actions/productsActions";
+import { connect, useStore } from "react-redux";
+import { getCollections } from "../../actions/productsActions";
 import SectionDescription from "./Sections/SectionDescription";
 
 import "./style/sectionCollection.scss";
+import SectionCollectionPreview from "./Sections/SectionCollectionPreview";
 
 const useStyles = makeStyles(presentationStyle);
 
-const PresentationPage = ({ productsReducer: { products }, getProducts }) => {
+const PresentationPage = ({
+  productsReducer: { collections },
+  getCollections,
+}) => {
+  const store = useStore();
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-    getProducts();
+    async function go() {
+      await getCollections();
+      collections = store.getState().productsReducer.collections;
+      console.log(collections);
+
+      // const artists = products.map(p => p.artist);
+      // const uniques = artists.filter(onlyUnique);
+      // console.log(uniques);
+    }
+    go();
     // eslint-disable-next-line
   }, []);
+
+  const onlyUnique = (value, index, self) => {
+    return self.indexOf(value) === index;
+  };
+
   const classes = useStyles();
   return (
     <div>
@@ -51,19 +70,18 @@ const PresentationPage = ({ productsReducer: { products }, getProducts }) => {
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
-
         <SectionDescription />
 
         <GridContainer className={classes.collections}>
           <SectionCollection
             link="ecommerce-page"
-            name="אמנים"
-            bg="https://cdn.shopify.com/s/files/1/0269/4725/6407/products/281fec30-a3c5-4c01-918f-b57873dc23ec_360x.jpg?v=1600120666"
+            name="צור את האמנות שלך"
+            bg={bb41}
           />
           <SectionCollection
             link="ecommerce-page"
-            name="צור את האמנות שלך"
-            bg={bb41}
+            name="אמנים"
+            bg="https://cdn.shopify.com/s/files/1/0269/4725/6407/products/281fec30-a3c5-4c01-918f-b57873dc23ec_360x.jpg?v=1600120666"
           />
         </GridContainer>
 
@@ -78,9 +96,15 @@ const PresentationPage = ({ productsReducer: { products }, getProducts }) => {
             פיקסלים מאומנים
           </h2>
           <GridContainer>
-            {products &&
-              products.map((p) => (
-                <SectionProductPreview product={p} key={p._id} />
+            {collections &&
+              collections.map((collection) => (
+                <SectionCollectionPreview
+                  key={collection._id}
+                  products={
+                    collection.products.filter(p => p.review_on_home ? true : false)
+                  }
+                  collection={collection}
+                />
               ))}
           </GridContainer>
         </div>
@@ -97,5 +121,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { getProducts }
+  { getCollections }
 )(PresentationPage);

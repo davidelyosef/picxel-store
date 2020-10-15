@@ -44,7 +44,7 @@ const SectionProductPreview = ({
           <Link to={`/product-page/${en_name}`}>
             <img
               src={
-                images[0] ? require(`assets/img/artists_picxel/${images[0]}`) : defaultImage
+                images ? require(`assets/img/artists_picxel/${images[0]}`) : defaultImage
               }
               alt="..."
               style={{ height: "300px", objectFit: "cover" }}

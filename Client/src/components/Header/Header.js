@@ -64,7 +64,7 @@ export default function Header(props) {
     [classes.fixed]: fixed,
   });
   return (
-    <AppBar className={appBarClasses}>
+    <AppBar className={appBarClasses} style={{ direction: 'ltr' }}>
       <Toolbar className={classes.container}>
         <Button className={classes.title}>
           <Link to="/" style={{ fontSize: "22px" }}>{brand}</Link>

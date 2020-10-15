@@ -22,6 +22,27 @@ export default function SectionContent() {
     <div className={classes.section}>
       <div className={classes.container}>
         <GridContainer justify="center">
+          <GridItem md={4} className={classes.mlAuto}>
+            <div
+              className={classes.sectionDescription}
+              style={{
+                textAlign: "end",
+                marginTop: "0",
+              }}
+            >
+              <h3 className={classes.title}>איך אנחנו מכינים את זה</h3>
+              <h6 className={classes.description}>מפקסלים את התמונה שלך</h6>
+              <h5 className={classes.description}>
+                במהלך שנות ה-70 של המאה ה-20, עם התגבשות תחום לימודי התרבות,
+                המונח טקסט התרחב להכללת כל פעילות אנושית הניתנת לניתוח תרבותי,
+                בין אם מדובר במוצר מוגמר ובין אם מדובר בפעילות מתפתחת ומשתנה
+                (כמו טקס חברתי מכל סוג שהוא). חוקרי הטקסטים במשמעותם המורחבת
+                יישמו עקרונות מתחום חקר הספרות על תופעות חברתיות, כגון מיקום
+                התופעות בהקשרים היסטוריים שונים ומציאת קישורים בין אירועים
+                המתרחשים בשדות חברתיים שונים{" "}
+              </h5>
+            </div>
+          </GridItem>
           <GridItem md={7}>
             <div className={classes.imageContainer}>
               <div className={classes.animeAreaImg}>
@@ -43,27 +64,6 @@ export default function SectionContent() {
                 </ScrollAnimation>
               </div>
               <img className={classes.ipadImg} src={picxel_3} alt="iPad" />
-            </div>
-          </GridItem>
-          <GridItem md={4} className={classes.mlAuto}>
-            <div
-              className={classes.sectionDescription}
-              style={{
-                textAlign: "end",
-                marginTop: "0",
-              }}
-            >
-              <h3 className={classes.title}>איך אנחנו מכינים את זה</h3>
-              <h6 className={classes.description}>מפקסלים את התמונה שלך</h6>
-              <h5 className={classes.description}>
-                במהלך שנות ה-70 של המאה ה-20, עם התגבשות תחום לימודי התרבות,
-                המונח טקסט התרחב להכללת כל פעילות אנושית הניתנת לניתוח תרבותי,
-                בין אם מדובר במוצר מוגמר ובין
-                אם מדובר בפעילות מתפתחת ומשתנה (כמו טקס חברתי מכל סוג שהוא).
-                חוקרי הטקסטים במשמעותם המורחבת יישמו עקרונות מתחום חקר הספרות על
-                תופעות חברתיות, כגון מיקום התופעות בהקשרים היסטוריים שונים
-                ומציאת קישורים בין אירועים המתרחשים בשדות חברתיים שונים{" "}
-              </h5>
             </div>
           </GridItem>
         </GridContainer>

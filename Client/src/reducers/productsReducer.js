@@ -1,4 +1,5 @@
 import {
+  GET_COLLECTIONS,
   GET_PRODUCT,
   GET_PRODUCTS,
   PRODUCTS_ERROR,
@@ -7,6 +8,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
+  collections: null,
   products: null,
   selected: null,
   loading: false,
@@ -16,6 +18,13 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case GET_COLLECTIONS:
+      return {
+        ...state,
+        collections: action.payload,
+        loading: false
+      }
+
     case GET_PRODUCTS:
       return {
         ...state,

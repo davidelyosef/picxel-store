@@ -23,19 +23,19 @@ import React from "react";
 // redux
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getProducts } from "../../../actions/productsActions";
+import { getCollections } from "../../../actions/productsActions";
 
 const useStyles = makeStyles(styles);
 
 const SectionLatestOffers = ({
-  productsReducer: { products },
-  getProducts,
+  productsReducer: { products, collections },
+  getCollections,
 }) => {
   const classes = useStyles();
 
   React.useEffect(() => {
     async function get() {
-      await getProducts();
+      await getCollections();
     }
     get();
     // eslint-disable-next-line
@@ -43,229 +43,82 @@ const SectionLatestOffers = ({
 
   return (
     <div className={classes.section} style={{ paddingBottom: "20" }}>
-      {products !== null && (
+      {collections !== null && (
         <section>
-          <div className={classes.container}>
-            <h2 style={{ textAlign: 'right' }}>קוקו</h2>
-            <GridContainer>
-              {products.map((p) => (
-                <GridItem md={4} sm={4} key={p._id}>
-                  <Card product plain>
-                    <CardHeader image plain>
-                      <Link to={`/product-page/${p.en_name}`}>
-                        <img
-                          src={require(`assets/img/artists_picxel/${p.images[0]}`)}
-                          alt={`${p.name} ${p.artist}`}
+          {collections.map((c) => (
+            <div className={classes.container} key={c._id+'asdsdw'}>
+              <h2 style={{ textAlign: "right" }}>{c.name}</h2>
+              <GridContainer>
+                {c.products.map((p) => (
+                  <GridItem md={4} sm={4} key={p._id}>
+                    <Card product plain>
+                      <CardHeader image plain>
+                        <Link to={`/product-page/${p.en_name}`}>
+                          <img
+                            src={require(`assets/img/artists_picxel/${
+                              p.images[0]
+                            }`)}
+                            alt={`${p.name} ${p.artist}`}
+                          />
+                        </Link>
+                        <div
+                          className={classes.coloredShadow}
+                          style={{
+                            backgroundImage: `url(assets/img/artists_picxel/${
+                              p.images[0]
+                            })`,
+                            opacity: 1,
+                          }}
                         />
-                      </Link>
-                      <div
-                        className={classes.coloredShadow}
-                        style={{
-                          backgroundImage: `url(assets/img/artists_picxel/${
-                            p.images[0]
-                          })`,
-                          opacity: 1,
-                        }}
-                      />
-                    </CardHeader>
-                    <CardBody className={classes.textCenter} plain>
-                      <h4 className={classes.cardTitle}>{p.name}</h4>
-                      <p className={classes.cardDescription}>{p.description}</p>
-                    </CardBody>
-                    <CardFooter plain>
-                      <div className={classes.priceContainer}>
-                        <span
-                          className={classNames(
-                            classes.price,
-                            classes.priceOld
-                          )}
+                      </CardHeader>
+                      <CardBody className={classes.textCenter} plain>
+                        <h4 className={classes.cardTitle}>{p.name}</h4>
+                        <p className={classes.cardDescription}>
+                          {p.description}
+                        </p>
+                      </CardBody>
+                      <CardFooter plain>
+                        <div className={classes.priceContainer}>
+                          <span
+                            className={classNames(
+                              classes.price,
+                              classes.priceOld
+                            )}
+                          >
+                            {" "}
+                            ₪{p.before_discount}
+                          </span>
+                          <span
+                            className={classNames(
+                              classes.price,
+                              classes.priceNew
+                            )}
+                          >
+                            {" "}
+                            ₪{p.price}
+                          </span>
+                        </div>
+                        <div
+                          className={classNames(classes.stats, classes.mlAuto)}
                         >
-                          {" "}
-                          ₪{p.before_discount}
-                        </span>
-                        <span
-                          className={classNames(
-                            classes.price,
-                            classes.priceNew
-                          )}
-                        >
-                          {" "}
-                          ₪{p.price}
-                        </span>
-                      </div>
-                      <div
-                        className={classNames(classes.stats, classes.mlAuto)}
-                      >
-                        <Tooltip
-                          id="tooltip-top"
-                          title="Saved to Wishlist"
-                          placement="top"
-                          classes={{ tooltip: classes.tooltip }}
-                        >
-                          <Button justIcon simple color="rose">
-                          {p.wishlist ? <Favorite /> : <FavoriteBorder />}
-                          </Button>
-                        </Tooltip>
-                      </div>
-                    </CardFooter>
-                  </Card>
-                </GridItem>
-              ))}
-            </GridContainer>
-          </div>
-
-          <div className={classes.container}>
-            <h2 style={{ textAlign: 'right' }}>טומי שנקר</h2>
-            <GridContainer>
-              <GridItem md={4} sm={4}>
-                <Card product plain>
-                  <CardHeader image plain>
-                    <a href="#pablo">
-                      <img src={gucci} alt="..." />
-                    </a>
-                    <div
-                      className={classes.coloredShadow}
-                      style={{ backgroundImage: `url(${gucci})`, opacity: 1 }}
-                    />
-                  </CardHeader>
-                  <CardBody className={classes.textCenter} plain>
-                    <h4 className={classes.cardTitle}>Gucci</h4>
-                    <p className={classes.cardDescription}>
-                      The structured shoulders and sleek detailing ensure a
-                      sharp silhouette. Team it with a silk pocket square and
-                      leather loafers.
-                    </p>
-                  </CardBody>
-                  <CardFooter plain>
-                    <div className={classes.priceContainer}>
-                      <span
-                        className={classNames(classes.price, classes.priceOld)}
-                      >
-                        {" "}
-                        ₪1,430
-                      </span>
-                      <span
-                        className={classNames(classes.price, classes.priceNew)}
-                      >
-                        {" "}
-                        ₪743
-                      </span>
-                    </div>
-                    <div className={classNames(classes.stats, classes.mlAuto)}>
-                      <Tooltip
-                        id="tooltip-top"
-                        title="Saved to Wishlist"
-                        placement="top"
-                        classes={{ tooltip: classes.tooltip }}
-                      >
-                        <Button justIcon simple color="rose">
-                          <Favorite />
-                        </Button>
-                      </Tooltip>
-                    </div>
-                  </CardFooter>
-                </Card>
-              </GridItem>
-              <GridItem md={4} sm={4}>
-                <Card product plain>
-                  <CardHeader image plain>
-                    <a href="#pablo">
-                      <img src={dolce} alt="..." />
-                    </a>
-                    <div
-                      className={classes.coloredShadow}
-                      style={{ backgroundImage: `url(${dolce})`, opacity: 1 }}
-                    />
-                  </CardHeader>
-                  <CardBody className={classes.textCenter} plain>
-                    <h4 className={classes.cardTitle}>Dolce & Gabbana</h4>
-                    <p className={classes.cardDescription}>
-                      The structured shoulders and sleek detailing ensure a
-                      sharp silhouette. Team it with a silk pocket square and
-                      leather loafers.
-                    </p>
-                  </CardBody>
-                  <CardFooter plain>
-                    <div className={classes.priceContainer}>
-                      <span
-                        className={classNames(classes.price, classes.priceOld)}
-                      >
-                        {" "}
-                        ₪1,430
-                      </span>
-                      <span
-                        className={classNames(classes.price, classes.priceNew)}
-                      >
-                        {" "}
-                        ₪743
-                      </span>
-                    </div>
-                    <div className={classNames(classes.stats, classes.mlAuto)}>
-                      <Tooltip
-                        id="tooltip-top"
-                        title="Saved to Wishlist"
-                        placement="top"
-                        classes={{ tooltip: classes.tooltip }}
-                      >
-                        <Button justIcon simple color="rose">
-                          <Favorite />
-                        </Button>
-                      </Tooltip>
-                    </div>
-                  </CardFooter>
-                </Card>
-              </GridItem>
-              <GridItem md={4} sm={4}>
-                <Card product plain>
-                  <CardHeader image plain>
-                    <a href="#pablo">
-                      <img src={tomFord} alt="..." />
-                    </a>
-                    <div
-                      className={classes.coloredShadow}
-                      style={{ backgroundImage: `url(${tomFord})`, opacity: 1 }}
-                    />
-                  </CardHeader>
-                  <CardBody className={classes.textCenter} plain>
-                    <h4 className={classes.cardTitle}>Dolce & Gabbana</h4>
-                    <p className={classes.cardDescription}>
-                      The structured shoulders and sleek detailing ensure a
-                      sharp silhouette. Team it with a silk pocket square and
-                      leather loafers.
-                    </p>
-                  </CardBody>
-                  <CardFooter plain>
-                    <div className={classes.priceContainer}>
-                      <span
-                        className={classNames(classes.price, classes.priceOld)}
-                      >
-                        {" "}
-                        ₪1,430
-                      </span>
-                      <span
-                        className={classNames(classes.price, classes.priceNew)}
-                      >
-                        {" "}
-                        ₪743
-                      </span>
-                    </div>
-                    <div className={classNames(classes.stats, classes.mlAuto)}>
-                      <Tooltip
-                        id="tooltip-top"
-                        title="Saved to Wishlist"
-                        placement="top"
-                        classes={{ tooltip: classes.tooltip }}
-                      >
-                        <Button justIcon simple color="rose">
-                          <Favorite />
-                        </Button>
-                      </Tooltip>
-                    </div>
-                  </CardFooter>
-                </Card>
-              </GridItem>
-            </GridContainer>
-          </div>
+                          <Tooltip
+                            id="tooltip-top"
+                            title="Saved to Wishlist"
+                            placement="top"
+                            classes={{ tooltip: classes.tooltip }}
+                          >
+                            <Button justIcon simple color="rose">
+                              {p.wishlist ? <Favorite /> : <FavoriteBorder />}
+                            </Button>
+                          </Tooltip>
+                        </div>
+                      </CardFooter>
+                    </Card>
+                  </GridItem>
+                ))}
+              </GridContainer>
+            </div>
+          ))}
         </section>
       )}
     </div>
@@ -278,5 +131,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { getProducts }
+  { getCollections }
 )(SectionLatestOffers);

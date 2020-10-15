@@ -16,3 +16,24 @@
     }
   }
 }
+.darkened-h3 {
+  position: absolute;
+  top: 30%;
+  color: #fff;
+  right: 50%;
+  transform: translate(50%, 0);
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 45px;
+}
+.darkened-h4 {
+  position: absolute;
+  top: 50%;
+  color: #fff;
+  right: 50%;
+  transform: translate(50%, 0);
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 22px;
+  background-color: rgba(255, 0, 0, 0.48);
+  padding: 5px;
+  border-radius: 5px;
+}

@@ -1,4 +1,5 @@
 import {
+  GET_COLLECTIONS,
   GET_PRODUCTS,
   PRODUCTS_ERROR,
   SET_LOADING,
@@ -6,6 +7,26 @@ import {
   GET_CART_PRODUCTS,
 } from "./types";
 import axios from "axios";
+
+// Get Collections
+export const getCollections = () => async (dispatch) => {
+  try {
+    setLoading();
+
+    const res = await axios.get('/api/collections');
+
+    dispatch({
+      type: GET_COLLECTIONS,
+      payload: res.data
+    })
+
+  } catch (error) {
+    dispatch({
+      type: PRODUCTS_ERROR,
+      payload: error,
+    });
+  }
+}
 
 // Get Products
 export const getProducts = () => async (dispatch) => {
