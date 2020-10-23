@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
+import "./style/shoppingCart.scss";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -13,6 +14,7 @@ import Close from "@material-ui/icons/Close";
 import Remove from "@material-ui/icons/Remove";
 import Add from "@material-ui/icons/Add";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 // core components
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
@@ -40,6 +42,7 @@ const useStyles = makeStyles(shoppingCartStyle);
 
 const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
   const store = useStore();
+  let [finalPrice, setFinalPrice] = useState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -48,6 +51,10 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
     async function go() {
       await getCartProducts();
       cart = await store.getState().productsReducer.cart;
+      let overallPrice = 0;
+      await cart.map(p => overallPrice += p.price * p.quantity);
+      setFinalPrice(overallPrice);
+      finalPrice = overallPrice;
       console.log(cart);
     }
     go();
@@ -77,7 +84,7 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
           </GridContainer>
         </div>
       </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)}>
+      <div className={classNames(classes.main, classes.mainRaised)} id="cartForPicxel">
         <div className={classes.container}>
           <Card plain>
             <CardBody plain>
@@ -162,7 +169,7 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
                           <Tooltip
                             key={1}
                             id="close1"
-                            title="Remove item"
+                            title="מחק"
                             placement="left"
                             classes={{ tooltip: classes.tooltip }}
                           >
@@ -201,14 +208,15 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
                         colspan: "3",
                         amount: (
                           <span>
-                            <small>₪</small>2,346
+                            <small>₪</small>{finalPrice && <span>{finalPrice}</span>}
                           </span>
                         ),
                         col: {
                           colspan: 3,
                           text: (
-                            <Button color="info" round>
-                              Complete Purchase <KeyboardArrowRight />
+                            <Button color="info" round style={{ float: "left" }}>
+                              השלם רכישה 
+                              <KeyboardArrowLeft />
                             </Button>
                           ),
                         },

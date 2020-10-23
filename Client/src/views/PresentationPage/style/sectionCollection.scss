@@ -18,7 +18,7 @@
 }
 .darkened-h3 {
   position: absolute;
-  top: 30%;
+  top: 25%;
   color: #fff;
   right: 50%;
   transform: translate(50%, 0);
@@ -36,4 +36,9 @@
   background-color: rgba(255, 0, 0, 0.48);
   padding: 5px;
   border-radius: 5px;
+  transition: 0.5s ease;
+  &:hover {
+    background-color: rgb(255, 0, 0);
+    transition: 0.5s ease;
+  }
 }

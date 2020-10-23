@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.eb6e5574.chunk.css",
-    "main.js": "/static/js/main.59465881.chunk.js",
-    "main.js.map": "/static/js/main.59465881.chunk.js.map",
+    "main.css": "/static/css/main.2f540729.chunk.css",
+    "main.js": "/static/js/main.339e1edf.chunk.js",
+    "main.js.map": "/static/js/main.339e1edf.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.1f53e218.js",
     "runtime~main.js.map": "/static/js/runtime~main.1f53e218.js.map",
     "static/css/2.d9ee7e2f.chunk.css": "/static/css/2.d9ee7e2f.chunk.css",
-    "static/js/2.08ce1f4a.chunk.js": "/static/js/2.08ce1f4a.chunk.js",
-    "static/js/2.08ce1f4a.chunk.js.map": "/static/js/2.08ce1f4a.chunk.js.map",
+    "static/js/2.48cb66a6.chunk.js": "/static/js/2.48cb66a6.chunk.js",
+    "static/js/2.48cb66a6.chunk.js.map": "/static/js/2.48cb66a6.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.e5fa91e4512b2b035c3486dc69638d8a.js": "/precache-manifest.e5fa91e4512b2b035c3486dc69638d8a.js",
+    "precache-manifest.366467ae95efa9a702103e1b721b2582.js": "/precache-manifest.366467ae95efa9a702103e1b721b2582.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.d9ee7e2f.chunk.css.map": "/static/css/2.d9ee7e2f.chunk.css.map",
-    "static/css/main.eb6e5574.chunk.css.map": "/static/css/main.eb6e5574.chunk.css.map",
+    "static/css/main.2f540729.chunk.css.map": "/static/css/main.2f540729.chunk.css.map",
     "static/media/avatar.jpg": "/static/media/avatar.cc93a967.jpg",
     "static/media/bb4-1.jpg": "/static/media/bb4-1.1ff5fb03.jpg",
     "static/media/bg.jpg": "/static/media/bg.50f15a1c.jpg",
@@ -40,10 +40,6 @@
     "static/media/card-blog4.jpg": "/static/media/card-blog4.c2cea7c5.jpg",
     "static/media/card-blog5.jpg": "/static/media/card-blog5.65e0d233.jpg",
     "static/media/card-blog6.jpg": "/static/media/card-blog6.7e4fdf9a.jpg",
-    "static/media/card-product1.jpg": "/static/media/card-product1.82f955f8.jpg",
-    "static/media/card-product2.jpg": "/static/media/card-product2.4217a9b4.jpg",
-    "static/media/card-product3.jpg": "/static/media/card-product3.1cd31fc0.jpg",
-    "static/media/card-product4.jpg": "/static/media/card-product4.e00c5af4.jpg",
     "static/media/card-profile1-square.jpg": "/static/media/card-profile1-square.3122abf4.jpg",
     "static/media/card-profile1.jpg": "/static/media/card-profile1.a0949f48.jpg",
     "static/media/card-profile2-square.jpg": "/static/media/card-profile2-square.788e3d36.jpg",
@@ -78,6 +74,7 @@
     "static/media/iphone.png": "/static/media/iphone.ba7def66.png",
     "static/media/iphone2.png": "/static/media/iphone2.faa74fc7.png",
     "static/media/kendall.jpg": "/static/media/kendall.5a0e395b.jpg",
+    "static/media/koko.jpg": "/static/media/koko.a0d5973d.jpg",
     "static/media/koko11.jpg": "/static/media/koko11.50f15a1c.jpg",
     "static/media/koko12.jpg": "/static/media/koko12.3544bca8.jpg",
     "static/media/koko13.jpg": "/static/media/koko13.5b7c1cad.jpg",
@@ -115,6 +112,7 @@
     "static/media/placeholder.jpg": "/static/media/placeholder.1eb7fff2.jpg",
     "static/media/product1.jpg": "/static/media/product1.081bf019.jpg",
     "static/media/product3.jpg": "/static/media/product3.a0e40011.jpg",
-    "static/media/tom-ford.jpg": "/static/media/tom-ford.404803b0.jpg"
+    "static/media/tom-ford.jpg": "/static/media/tom-ford.404803b0.jpg",
+    "static/media/tommy.jpg": "/static/media/tommy.38605597.jpg"
   }
 }

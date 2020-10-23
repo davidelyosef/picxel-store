@@ -37,6 +37,7 @@ const ProductRecom = ({ product }) => {
             <img
               src={require(`assets/img/artists_picxel/${images[0]}`)}
               alt="cardProduct"
+              style={{ objectFit: "cover", height: "150px" }}
             />
           </a>
         </CardHeader>

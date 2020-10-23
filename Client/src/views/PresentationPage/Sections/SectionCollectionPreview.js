@@ -13,12 +13,14 @@ const SectionCollectionPreview = ({ products, collection }) => {
   return (
     <Fragment>
       <GridItem md={3} sm={4} xs={6}>
-        <Card>
+        <Card>                  
           <Link to="/ecommerce-page" style={{ position: "relative" }}>
             <img
               src={require(`assets/img/sections/${collection.background}`)}
               style={{
-                height: "100%",
+                height: "300px",
+                boxShadow: "0 5px 15px -8px rgba(0, 0, 0, 0.24), 0 8px 10px -5px rgba(0, 0, 0, 0.2)",
+                borderRadius: '6px',
                 maxWidth: "100%",
                 objectFit: "cover",
                 filter: "brightness(50%)",

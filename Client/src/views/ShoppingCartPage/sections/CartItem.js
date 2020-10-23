@@ -18,57 +18,50 @@ const CartItem = () => {
   const classes = useStyles();
   return (
     <Fragment>
-          // Product image
-    <div className={classes.imgContainer} key={1}>
-      <img src={product1} alt="..." className={classes.img} />
-    </div>,
-
-    // Product name
-    <span key={1}>
-      <a href="#jacket" className={classes.tdNameAnchor}>
-        Spring Jacket
-      </a>
-      <br />
-      <small className={classes.tdNameSmall}>by Dolce&amp;Gabbana</small>
-    </span>,
-
-    // Product price
-    <span key={1}>
-      <small className={classes.tdNumberSmall}>₪</small> 549
-    </span>,
-
-    // Quantity
-    "1",
-
-    // + and - buttons
-    <span key={1}>
-      <div className={classes.buttonGroup}>
-        <Button color="info" size="sm" round className={classes.firstButton}>
-          <Remove />
-        </Button>
-        <Button color="info" size="sm" round className={classes.lastButton}>
-          <Add />
-        </Button>
+      // Product image
+      <div className={classes.imgContainer} key={1}>
+        <img src={product1} alt="..." className={classes.img} />
       </div>
-    </span>,
-
-    // final price
-    <span key={1}>
-      <small className={classes.tdNumberSmall}>₪</small> 549
-    </span>,
-
-    // X button
-    <Tooltip
-      key={1}
-      id="close1"
-      title="Remove item"
-      placement="left"
-      classes={{ tooltip: classes.tooltip }}
-    >
-      <Button link className={classes.actionButton}>
-        <Close />
-      </Button>
-    </Tooltip>,
+      , // Product name
+      <span key={1}>
+        <a href="#jacket" className={classes.tdNameAnchor}>
+          Spring Jacket
+        </a>
+        <br />
+        <small className={classes.tdNameSmall}>by Dolce&amp;Gabbana</small>
+      </span>
+      , // Product price
+      <span key={1}>
+        <small className={classes.tdNumberSmall}>₪</small> 549
+      </span>
+      , // Quantity "1", // + and - buttons
+      <span key={1}>
+        <div className={classes.buttonGroup}>
+          <Button color="info" size="sm" round className={classes.firstButton}>
+            <Remove />
+          </Button>
+          <Button color="info" size="sm" round className={classes.lastButton}>
+            <Add />
+          </Button>
+        </div>
+      </span>
+      , // final price
+      <span key={1}>
+        <small className={classes.tdNumberSmall}>₪</small> 549
+      </span>
+      , // X button
+      <Tooltip
+        key={1}
+        id="close1"
+        title="Remove item"
+        placement="left"
+        classes={{ tooltip: classes.tooltip }}
+      >
+        <Button link className={classes.actionButton}>
+          <Close />
+        </Button>
+      </Tooltip>
+      ,
     </Fragment>
   );
 };

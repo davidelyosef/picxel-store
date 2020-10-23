@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6d754d1a658321c3f865232b8a0b9ebd",
+    "revision": "3ac5576ef4f44ceb3af75c0716fac403",
     "url": "/index.html"
   },
   {
-    "revision": "d3396ec8597178b1b3cf",
+    "revision": "0d8c2aadf70ea6d7230d",
     "url": "/static/css/2.d9ee7e2f.chunk.css"
   },
   {
-    "revision": "a7be0917354c21bdad85",
-    "url": "/static/css/main.eb6e5574.chunk.css"
+    "revision": "b54fe0186f654cc37ed7",
+    "url": "/static/css/main.2f540729.chunk.css"
   },
   {
-    "revision": "d3396ec8597178b1b3cf",
-    "url": "/static/js/2.08ce1f4a.chunk.js"
+    "revision": "0d8c2aadf70ea6d7230d",
+    "url": "/static/js/2.48cb66a6.chunk.js"
   },
   {
-    "revision": "a7be0917354c21bdad85",
-    "url": "/static/js/main.59465881.chunk.js"
+    "revision": "b54fe0186f654cc37ed7",
+    "url": "/static/js/main.339e1edf.chunk.js"
   },
   {
     "revision": "5a0f601014f3dd12cbe4",
@@ -134,22 +134,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "7e4fdf9a51826314d50621198bb0b81f",
     "url": "/static/media/card-blog6.7e4fdf9a.jpg"
-  },
-  {
-    "revision": "82f955f86d160cb9191c7fd6438a6ddc",
-    "url": "/static/media/card-product1.82f955f8.jpg"
-  },
-  {
-    "revision": "4217a9b499d3cc9e06f641f348fb45e8",
-    "url": "/static/media/card-product2.4217a9b4.jpg"
-  },
-  {
-    "revision": "1cd31fc08af153b803516fa91a257bee",
-    "url": "/static/media/card-product3.1cd31fc0.jpg"
-  },
-  {
-    "revision": "e00c5af4192cf8f1c0fa98e313e4fcef",
-    "url": "/static/media/card-product4.e00c5af4.jpg"
   },
   {
     "revision": "3122abf4a3e1067926c08dee7684522d",
@@ -286,6 +270,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "5a0e395b3b76565583339619ca3110f4",
     "url": "/static/media/kendall.5a0e395b.jpg"
+  },
+  {
+    "revision": "a0d5973d8abf7965f4696b7430d6e40a",
+    "url": "/static/media/koko.a0d5973d.jpg"
   },
   {
     "revision": "50f15a1c62e8f493400f0882130f40f3",
@@ -442,5 +430,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "404803b08a2efaf71ee301987391765d",
     "url": "/static/media/tom-ford.404803b0.jpg"
+  },
+  {
+    "revision": "386055979a20cc9f78e7d3915a368058",
+    "url": "/static/media/tommy.38605597.jpg"
   }
 ]);

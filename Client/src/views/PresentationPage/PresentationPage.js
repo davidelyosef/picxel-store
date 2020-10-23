@@ -69,6 +69,7 @@ const PresentationPage = ({
           </GridContainer>
         </div>
       </Parallax>
+
       <div className={classNames(classes.main, classes.mainRaised)}>
         <SectionDescription />
 
@@ -98,6 +99,7 @@ const PresentationPage = ({
           <GridContainer>
             {collections &&
               collections.map((collection) => (
+
                 <SectionCollectionPreview
                   key={collection._id}
                   products={
@@ -105,6 +107,7 @@ const PresentationPage = ({
                   }
                   collection={collection}
                 />
+                
               ))}
           </GridContainer>
         </div>
