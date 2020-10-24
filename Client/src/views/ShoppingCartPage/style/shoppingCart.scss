@@ -6,3 +6,32 @@
     direction: rtl;
     text-align: right;
 }
+.td {
+    color: #3C4858;
+    padding: 12px 8px!important;
+    position: relative;
+    font-size: 0.875rem;
+    border-top: 1px solid #ddd;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 300;
+    line-height: 1.5em;
+    border-bottom: none;
+    vertical-align: middle;
+}
+.endTr {
+    font-size: 26px;
+    margin-top: 5px;
+    text-align: right;
+    font-weight: 300;
+}
+.tableCart {
+    border-spacing: 0;
+    width: 100%;
+    overflow-x: auto;
+}
+@media only screen and (max-width: 768px) {
+    .tableCart {
+        display: flex;
+        flex-direction: column;
+    }
+}

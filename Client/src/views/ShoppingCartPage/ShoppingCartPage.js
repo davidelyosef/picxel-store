@@ -52,7 +52,7 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
       await getCartProducts();
       cart = await store.getState().productsReducer.cart;
       let overallPrice = 0;
-      await cart.map(p => overallPrice += p.price * p.quantity);
+      await cart.map((p) => (overallPrice += p.price * p.quantity));
       setFinalPrice(overallPrice);
       finalPrice = overallPrice;
       console.log(cart);
@@ -84,165 +84,54 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
           </GridContainer>
         </div>
       </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)} id="cartForPicxel">
+      <div
+        className={classNames(classes.main, classes.mainRaised)}
+        id="cartForPicxel"
+      >
         <div className={classes.container}>
           <Card plain>
             <CardBody plain>
               <h3 className={classes.cardTitle}>עגלת קניות</h3>
-
-              <Table
-                tableHead={["", "מוצר", "מחיר", "כמות", "", "סך הכל", ""]}
-                tableData={[]}
-              />
-
               {cart ? (
-                <div>
-                  {cart.map((p) => (
-                    <Table
-                      key={p._id}
-                      tableData={[
-                        [
-                          // Product image
-                          <div className={classes.imgContainer} key={1}>
-                            <img
-                              // require(`assets/img/artists_picxel/${p.images[0]}`)
-                              src={require(`assets/img/artists_picxel/${
-                                p.images[0]
-                              }`)}
-                              alt={p.en_name}
-                              className={classes.img}
-                            />
-                          </div>,
+                <table className="tableCart">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>מוצר</th>
+                      <th>מחיר</th>
+                      <th>כמות</th>
+                      <th></th>
+                      <th>סך הכל</th>
+                      <th></th>
+                    </tr>
+                  </thead>
 
-                          // Product name
-                          <span key={1}>
-                            <a
-                              href={`/product-page/${p.en_name}`}
-                              className={classes.tdNameAnchor}
-                            >
-                              {p.name}
-                            </a>
-                            <br />
-                            <small className={classes.tdNameSmall}>
-                              by Dolce&amp;Gabbana
-                            </small>
-                          </span>,
+                  <tbody>
+                    {cart.map((p) => (
+                      <CartItem product={p} key={p._id} />
+                    ))}
 
-                          // Product price
-                          <span key={1}>
-                            <small className={classes.tdNumberSmall}>₪</small>{" "}
-                            {p.price}
-                          </span>,
-
-                          // Quantity
-                          `${p.quantity}`,
-
-                          // + and - buttons
-                          <span key={1}>
-                            <div className={classes.buttonGroup}>
-                              <Button
-                                color="info"
-                                size="sm"
-                                round
-                                className={classes.firstButton}
-                              >
-                                <Remove />
-                              </Button>
-                              <Button
-                                color="info"
-                                size="sm"
-                                round
-                                className={classes.lastButton}
-                              >
-                                <Add />
-                              </Button>
-                            </div>
-                          </span>,
-
-                          // final price
-                          <span key={1}>
-                            <small className={classes.tdNumberSmall}>₪</small>{" "}
-                            {p.quantity * p.price}
-                          </span>,
-
-                          // X button
-                          <Tooltip
-                            key={1}
-                            id="close1"
-                            title="מחק"
-                            placement="left"
-                            classes={{ tooltip: classes.tooltip }}
-                          >
-                            <Button link className={classes.actionButton}>
-                              <Close />
-                            </Button>
-                          </Tooltip>,
-                        ],
-                      ]}
-                      tableShopping
-                      customHeadCellClasses={[
-                        classes.textCenter,
-                        classes.description,
-                        classes.description,
-                        classes.textRight,
-                        classes.textRight,
-                        classes.textRight,
-                      ]}
-                      customHeadClassesForCells={[0, 2, 3, 4, 5, 6]}
-                      customCellClasses={[
-                        classes.tdName,
-                        classes.customFont,
-                        classes.customFont,
-                        classes.tdNumber,
-                        classes.tdNumber + " " + classes.tdNumberAndButtonGroup,
-                        classes.tdNumber + " " + classes.textCenter,
-                      ]}
-                      customClassesForCells={[1, 2, 3, 4, 5, 6]}
-                    />
-                  ))}
-
-                  <Table
-                    tableData={[
-                      {
-                        purchase: true,
-                        colspan: "3",
-                        amount: (
-                          <span>
-                            <small>₪</small>{finalPrice && <span>{finalPrice}</span>}
-                          </span>
-                        ),
-                        col: {
-                          colspan: 3,
-                          text: (
-                            <Button color="info" round style={{ float: "left" }}>
-                              השלם רכישה 
-                              <KeyboardArrowLeft />
-                            </Button>
-                          ),
-                        },
-                      },
-                    ]}
-                    tableShopping
-                    customHeadCellClasses={[
-                      classes.textCenter,
-                      classes.description,
-                      classes.description,
-                      classes.textRight,
-                      classes.textRight,
-                      classes.textRight,
-                    ]}
-                    customHeadClassesForCells={[0, 2, 3, 4, 5, 6]}
-                    customCellClasses={[
-                      classes.tdName,
-                      classes.customFont,
-                      classes.customFont,
-                      classes.tdNumber,
-                      classes.tdNumber + " " + classes.tdNumberAndButtonGroup,
-                      classes.tdNumber + " " + classes.textCenter,
-                    ]}
-                    customClassesForCells={[1, 2, 3, 4, 5, 6]}
-                  />
-                </div>
+                    <tr className='endTr'>
+                      <td>בסך הכל:</td>
+                      <td>
+                        <span>
+                          <small>₪</small>
+                          {finalPrice && <span>{finalPrice}</span>}
+                        </span>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <Button color="info" round style={{ float: "left" }}>
+                          השלם רכישה
+                          <KeyboardArrowLeft />
+                        </Button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               ) : (
                 <h3>אין מוצרים בעגלת הקניות</h3>
               )}

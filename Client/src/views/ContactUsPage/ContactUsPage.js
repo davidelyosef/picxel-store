@@ -137,7 +137,10 @@ export default function ContactUsPage() {
       allowfullscreen=""
     ></iframe> */}
       </div>
-      <div className={classNames(classes.main, classes.mainRaised)}>
+      <div
+        className={classNames(classes.main, classes.mainRaised)}
+        style={{ direction: "ltr" }}
+      >
         <div className={classes.contactContent}>
           <div className={classes.container}>
             <h2 className={classes.title} style={{ textAlign: "end" }}>
@@ -176,7 +179,7 @@ export default function ContactUsPage() {
                 />
               </GridItem>
               <GridItem md={6} sm={6} className={classes.mlAuto}>
-                <p>
+                <p style={{ textAlign: "right" }}>
                   במהלך שנות ה-70 של המאה ה-20, עם התגבשות תחום לימודי התרבות,
                   המונח טקסט התרחב להכללת כל פעילות אנושית הניתנת לניתוח תרבותי
                   <br />
@@ -203,7 +206,7 @@ export default function ContactUsPage() {
                   />
                   <CustomInput
                     inputProps={{
-                      placeholder: 'טלפון',
+                      placeholder: "טלפון",
                     }}
                     id="float"
                     formControlProps={{
