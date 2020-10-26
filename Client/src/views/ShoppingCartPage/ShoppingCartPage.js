@@ -55,7 +55,6 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
       await cart.map((p) => (overallPrice += p.price * p.quantity));
       setFinalPrice(overallPrice);
       finalPrice = overallPrice;
-      console.log(cart);
     }
     go();
   }, []);
@@ -108,7 +107,7 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
 
                   <tbody>
                     {cart.map((p) => (
-                      <CartItem product={p} key={p._id} />
+                      <CartItem product={p} cart={cart} key={p._id} />
                     ))}
 
                     <tr className='endTr'>
@@ -116,7 +115,7 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
                       <td>
                         <span>
                           <small>₪</small>
-                          {finalPrice && <span>{finalPrice}</span>}
+                          {finalPrice && <span id="finalPrice">{finalPrice}</span>}
                         </span>
                       </td>
                       <td></td>
