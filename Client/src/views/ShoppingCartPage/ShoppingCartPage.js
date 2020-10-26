@@ -1,42 +1,22 @@
 /*eslint-disable*/
-import React, { useEffect, useState } from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-import "./style/shoppingCart.scss";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import Tooltip from "@material-ui/core/Tooltip";
-// @material-ui/icons
-import Favorite from "@material-ui/icons/Favorite";
-import Close from "@material-ui/icons/Close";
-import Remove from "@material-ui/icons/Remove";
-import Add from "@material-ui/icons/Add";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-// core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Parallax from "components/Parallax/Parallax.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Footer from "components/Footer/Footer.js";
-import Table from "components/Table/Table.js";
-import Button from "components/CustomButtons/Button.js";
+import shoppingCartStyle from "assets/jss/material-kit-pro-react/views/shoppingCartStyle.js";
+// nodejs library that concatenates classes
+import classNames from "classnames";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
-
-import shoppingCartStyle from "assets/jss/material-kit-pro-react/views/shoppingCartStyle.js";
-
-import product1 from "assets/img/product1.jpg";
-import product2 from "assets/img/product2.jpg";
-import product3 from "assets/img/product3.jpg";
-
+import Button from "components/CustomButtons/Button.js";
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+import Parallax from "components/Parallax/Parallax.js";
+import React, { useEffect, useState } from "react";
 // redux
 import { connect, useStore } from "react-redux";
-import { getCartProducts, getProducts } from "../../actions/productsActions";
+import { getCartProducts } from "../../actions/productsActions";
 import CartItem from "./sections/CartItem";
+import "./style/shoppingCart.scss";
 
 const useStyles = makeStyles(shoppingCartStyle);
 
@@ -48,16 +28,27 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
 
-    async function go() {
-      await getCartProducts();
-      cart = await store.getState().productsReducer.cart;
-      let overallPrice = 0;
-      await cart.map((p) => (overallPrice += p.price * p.quantity));
-      setFinalPrice(overallPrice);
-      finalPrice = overallPrice;
-    }
-    go();
+    getCart();
   }, []);
+
+  const getCart = async () => {
+    await getCartProducts();
+    cart = await store.getState().productsReducer.cart;
+    let overallPrice = 0;
+    await cart.map((p) => (overallPrice += p.price * p.quantity));
+    setFinalPrice(overallPrice);
+    finalPrice = overallPrice;
+  };
+
+  const onPurchase = async () => {
+    await getCart();
+    console.log("purchase");
+    const obj = {
+      cart,
+      finalPrice
+    }
+    console.log(obj);
+  };
 
   const classes = useStyles();
   return (
@@ -110,12 +101,14 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
                       <CartItem product={p} cart={cart} key={p._id} />
                     ))}
 
-                    <tr className='endTr'>
+                    <tr className="endTr">
                       <td>בסך הכל:</td>
                       <td>
                         <span>
                           <small>₪</small>
-                          {finalPrice && <span id="finalPrice">{finalPrice}</span>}
+                          {finalPrice && (
+                            <span id="finalPrice">{finalPrice}</span>
+                          )}
                         </span>
                       </td>
                       <td></td>
@@ -123,7 +116,12 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
                       <td></td>
                       <td></td>
                       <td>
-                        <Button color="info" round style={{ float: "left" }}>
+                        <Button
+                          color="info"
+                          round
+                          style={{ float: "left" }}
+                          onClick={onPurchase}
+                        >
                           השלם רכישה
                           <KeyboardArrowLeft />
                         </Button>

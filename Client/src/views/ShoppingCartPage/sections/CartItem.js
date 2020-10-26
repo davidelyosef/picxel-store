@@ -1,18 +1,15 @@
 /*eslint-disable*/
+import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
 import Add from "@material-ui/icons/Add";
 import Close from "@material-ui/icons/Close";
 import Remove from "@material-ui/icons/Remove";
-import product1 from "assets/img/product1.jpg";
-import Button from "components/CustomButtons/Button.js";
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import shoppingCartStyle from "assets/jss/material-kit-pro-react/views/shoppingCartStyle.js";
+import Button from "components/CustomButtons/Button.js";
 import PropTypes from "prop-types";
+import React from "react";
 import "../style/shoppingCart.scss";
-
-import product2 from "assets/img/product2.jpg";
-import product3 from "assets/img/product3.jpg";
+import defaultImage from "assets/img/placeholder.jpg";
 
 const useStyles = makeStyles(shoppingCartStyle);
 
@@ -21,7 +18,6 @@ const CartItem = ({
   product: { images, en_name, name, price, quantity, _id },
 }) => {
   const classes = useStyles();
-  const [overallPrice, setOverallPrice] = useState(0);
   let allSum = 0;
 
   const setQuantity = (num) => {
@@ -64,7 +60,11 @@ const CartItem = ({
       <td className="td">
         <div className={classes.imgContainer} key={1}>
           <img
-            src={require(`assets/img/artists_picxel/${images[0]}`)}
+            src={
+              require(`assets/img/artists_picxel/${images[0]}`)
+                ? require(`assets/img/artists_picxel/${images[0]}`)
+                : defaultImage
+            }
             alt={en_name}
             className={classes.img}
           />
