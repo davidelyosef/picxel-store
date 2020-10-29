@@ -82,7 +82,7 @@ const ShoppingCartPage = ({ productsReducer: { cart }, getCartProducts }) => {
           <Card plain>
             <CardBody plain>
               <h3 className={classes.cardTitle}>עגלת קניות</h3>
-              {cart ? (
+              {cart && cart.length > 0 ? (
                 <table className="tableCart">
                   <thead>
                     <tr>

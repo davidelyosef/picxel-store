@@ -31,8 +31,8 @@ const SectionCollectionPreview = ({ products, collection }) => {
           </Link>
         </Card>
       </GridItem>
-      {products &&
-        products.map((p) => <SectionProductPreview product={p} key={p._id} />)}
+      {products && collection &&
+        products.map((p) => <SectionProductPreview product={p} collection={collection.en_name} key={p._id} />)}
     </Fragment>
   );
 };

@@ -10,8 +10,8 @@ import {
 
 const initialState = {
   collections: null,
-  products: null,
-  selected: null,
+  selectedCollection: null,
+  selectedProduct: null,
   loading: false,
   error: null,
   cart: null,
@@ -29,7 +29,7 @@ export default (state = initialState, action) => {
     case GET_PRODUCTS:
       return {
         ...state,
-        products: action.payload,
+        selectedCollection: action.payload,
         loading: false,
       };
 
@@ -49,7 +49,7 @@ export default (state = initialState, action) => {
     case GET_PRODUCT:
       return {
         ...state,
-        selected: state.products.find((p) => p.en_name === action.payload ? p : console.log()),
+        selectedProduct: state.selectedCollection.find((p) => p.en_name === action.payload ? p : console.log()),
         loading: false,
       };
       

@@ -19,10 +19,12 @@ import styles from "assets/jss/material-kit-pro-react/views/ecommerceSections/la
 import defaultImage from "assets/img/placeholder.jpg";
 
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(styles);
 
 const SectionProductPreview = ({
+  collection,
   product: {
     name,
     en_name,
@@ -33,7 +35,7 @@ const SectionProductPreview = ({
     wishlist,
     background,
     images,
-    link = '/product-page'
+    link = "/product-page",
   },
 }) => {
   const classes = useStyles();
@@ -41,10 +43,12 @@ const SectionProductPreview = ({
     <GridItem md={3} sm={4} xs={6}>
       <Card product plain>
         <CardHeader image plain>
-          <Link to={`/product-page/${en_name}`}>
+          <Link to={`/product-page/${collection}/${en_name}`}>
             <img
               src={
-                images ? require(`assets/img/artists_picxel/${images[0]}`) : defaultImage
+                images
+                  ? require(`assets/img/artists_picxel/${images[0]}`)
+                  : defaultImage
               }
               alt="..."
               style={{ height: "300px", objectFit: "cover" }}
@@ -54,7 +58,9 @@ const SectionProductPreview = ({
             className={classes.coloredShadow}
             style={{
               backgroundImage: `url(${
-                images[0] ? require(`assets/img/artists_picxel/${images[0]}`) : defaultImage
+                images[0]
+                  ? require(`assets/img/artists_picxel/${images[0]}`)
+                  : defaultImage
               })`,
               opacity: 1,
             }}
@@ -67,7 +73,6 @@ const SectionProductPreview = ({
           <p className={classes.cardDescription}>{description}</p>
         </CardBody>
         <CardFooter plain>
-          
           <div className={classes.priceContainer}>
             <span className={classNames(classes.price, classes.priceOld)}>
               {" "}
@@ -79,7 +84,7 @@ const SectionProductPreview = ({
             </span>
           </div>
           {/* eslint-disable-next-line */}
-          <div className={classNames(classes.stats, classes.mlAuto)}>
+          {/* <div className={classNames(classes.stats, classes.mlAuto)}>
             <Tooltip
               id="tooltip-top"
               title="Saved to Wishlist"
@@ -90,11 +95,16 @@ const SectionProductPreview = ({
                 {wishlist ? <Favorite /> : <FavoriteBorder />}
               </Button>
             </Tooltip>
-          </div>
+          </div> */}
         </CardFooter>
       </Card>
     </GridItem>
   );
 };
+
+SectionProductPreview.propTypes = {
+  product: PropTypes.object.isRequired,
+  collection: PropTypes.string.isRequired,
+}
 
 export default SectionProductPreview;

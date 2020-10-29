@@ -53,7 +53,7 @@ const SectionLatestOffers = ({
                   <GridItem md={4} sm={4} key={p._id}>
                     <Card product plain>
                       <CardHeader image plain>
-                        <Link to={`/product-page/${p.en_name}`}>
+                        <Link to={`/product-page/${c.en_name}/${p.en_name}`}>
                           <img
                             src={require(`assets/img/artists_picxel/${
                               p.images[0]

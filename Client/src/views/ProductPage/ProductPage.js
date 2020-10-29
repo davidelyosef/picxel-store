@@ -19,7 +19,11 @@ import React, { useEffect, useState } from "react";
 // react component used to create nice image meadia player
 import ImageGallery from "react-image-gallery";
 import { connect, useStore } from "react-redux";
-import { getProduct, getProducts } from "../../actions/productsActions";
+import {
+  getProduct,
+  getProducts,
+  getCollections,
+} from "../../actions/productsActions";
 import ProductBadges from "./sections/ProductBadges";
 import ProductRecom from "./sections/ProductRecom";
 import "./style/productPage.scss";
@@ -28,20 +32,24 @@ const useStyles = makeStyles(productStyle);
 
 // getProduct
 const ProductPage = ({
-  productsReducer: { products, selected },
+  productsReducer: { selectedCollection, selectedProduct, collections },
   getProducts,
   getProduct,
+  getCollections,
 }) => {
-  const en_name = window.location.pathname;
+  const en_name = window.location.pathname.replace("/product-page/", "");
+  const collection = en_name.substr(0, en_name.indexOf("/"));
+  const productName = en_name.replace(`${collection}/`, "");
+
   const store = useStore();
 
   const [otherProducts, setOtherProducts] = useState([]);
   const [theCart, setTheCart] = useState(localStorage.getItem("cart"));
 
   const fourRandom = () => {
-    if (products !== null && selected !== null) {
-      products.map((p) => {
-        if (p._id !== selected._id) otherProducts.push(p);
+    if (selectedCollection !== null && selectedProduct !== null) {
+      selectedCollection.map((p) => {
+        if (p._id !== selectedProduct._id) otherProducts.push(p);
       });
 
       // list of four
@@ -59,10 +67,15 @@ const ProductPage = ({
 
   useEffect(() => {
     async function get() {
-      await getProducts();
-      await getProduct(en_name.replace("/product-page/", ""));
-      products = store.getState().productsReducer.products;
-      selected = store.getState().productsReducer.selected;
+      
+      
+      await getProducts(collection);
+      await getProduct(productName);
+      !collections && await getCollections();
+      console.log(collections);
+      
+      selectedCollection = store.getState().productsReducer.selectedCollection;
+      selectedProduct = store.getState().productsReducer.selectedProduct;
       await fourRandom();
     }
     get();
@@ -90,19 +103,19 @@ const ProductPage = ({
   };
 
   const addToCart = () => {
-    const add = { _id: selected._id, quantity: 1 };
+    const add = { _id: selectedProduct._id, quantity: 1 };
     let cart = localStorage.getItem("cart");
     let exist = false;
 
     if (cart) {
       cart = JSON.parse(cart);
-      cart.find(c => {
+      cart.find((c) => {
         if (c._id === add._id) {
           exist = true;
           c.quantity += 1;
         }
       });
-      exist ? '' : cart.push(add);
+      exist ? "" : cart.push(add);
       localStorage.setItem("cart", JSON.stringify(cart));
       // setTheCart(JSON.stringify(cart));
       return;
@@ -136,7 +149,7 @@ const ProductPage = ({
       </Parallax>
 
       <div className={classNames(classes.section, classes.sectionGray)}>
-        {selected !== null && (
+        {selectedProduct !== null && (
           <div className={classes.container}>
             <div
               className={classNames(classes.main, classes.mainRaised)}
@@ -148,16 +161,16 @@ const ProductPage = ({
                     showFullscreenButton={true}
                     showPlayButton={true}
                     // startIndex={3}
-                    items={setImageArr(selected.images)}
+                    items={setImageArr(selectedProduct.images)}
                   />
                 </GridItem>
                 <GridItem md={6} sm={6}>
-                  <h2 className={classes.title}>{selected.name}</h2>
+                  <h2 className={classes.title}>{selectedProduct.name}</h2>
                   <h3
                     className={classes.mainPrice}
                     style={{ display: "inline-block" }}
                   >
-                    ₪{selected.price}
+                    ₪{selectedProduct.price}
                   </h3>
                   <h3
                     className={classes.mainPrice}
@@ -167,7 +180,7 @@ const ProductPage = ({
                       color: "#9a9a9a",
                     }}
                   >
-                    ₪{selected.before_discount}
+                    ₪{selectedProduct.before_discount}
                   </h3>
 
                   <Accordion
@@ -176,7 +189,7 @@ const ProductPage = ({
                     collapses={[
                       {
                         title: "פרטים",
-                        content: <p>{selected.description}</p>,
+                        content: <p>{selectedProduct.description}</p>,
                       },
                       {
                         title: "פרטים על האמן",
@@ -212,112 +225,6 @@ const ProductPage = ({
                       },
                     ]}
                   />
-                  <GridContainer className={classes.pickSize}>
-                    <GridItem md={6} sm={6}>
-                      <label>בחר צבע</label>
-                      <FormControl
-                        fullWidth
-                        className={classes.selectFormControl}
-                      >
-                        <Select
-                          MenuProps={{
-                            className: classes.selectMenu,
-                          }}
-                          classes={{
-                            select: classes.select,
-                          }}
-                          value={colorSelect}
-                          onChange={(event) =>
-                            setColorSelect(event.target.value)
-                          }
-                          inputProps={{
-                            name: "colorSelect",
-                            id: "color-select",
-                          }}
-                        >
-                          <MenuItem
-                            classes={{
-                              root: classes.selectMenuItem,
-                              selected: classes.selectMenuItemSelected,
-                            }}
-                            value="0"
-                          >
-                            ורוד
-                          </MenuItem>
-                          <MenuItem
-                            classes={{
-                              root: classes.selectMenuItem,
-                              selected: classes.selectMenuItemSelected,
-                            }}
-                            value="1"
-                          >
-                            אפור
-                          </MenuItem>
-                          <MenuItem
-                            classes={{
-                              root: classes.selectMenuItem,
-                              selected: classes.selectMenuItemSelected,
-                            }}
-                            value="2"
-                          >
-                            לבן
-                          </MenuItem>
-                        </Select>
-                      </FormControl>
-                    </GridItem>
-                    <GridItem md={6} sm={6}>
-                      <label>בחר גודל</label>
-                      <FormControl
-                        fullWidth
-                        className={classes.selectFormControl}
-                      >
-                        <Select
-                          MenuProps={{
-                            className: classes.selectMenu,
-                          }}
-                          classes={{
-                            select: classes.select,
-                          }}
-                          value={sizeSelect}
-                          onChange={(event) =>
-                            setSizeSelect(event.target.value)
-                          }
-                          inputProps={{
-                            name: "sizeSelect",
-                            id: "size-select",
-                          }}
-                        >
-                          <MenuItem
-                            classes={{
-                              root: classes.selectMenuItem,
-                              selected: classes.selectMenuItemSelected,
-                            }}
-                            value="0"
-                          >
-                            קטן
-                          </MenuItem>
-                          <MenuItem
-                            classes={{
-                              root: classes.selectMenuItem,
-                              selected: classes.selectMenuItemSelected,
-                            }}
-                            value="1"
-                          >
-                            בינוני
-                          </MenuItem>
-                          <MenuItem
-                            classes={{
-                              root: classes.selectMenuItem,
-                              selected: classes.selectMenuItemSelected,
-                            }}
-                            value="2"
-                          >
-                            גדול
-                          </MenuItem>
-                        </Select>
-                      </FormControl>
-                    </GridItem>
-                  </GridContainer>
 
                   <GridContainer className="add-to-cart">
                     <div onClick={addToCart}>
@@ -340,7 +247,7 @@ const ProductPage = ({
               <GridContainer>
                 {otherProducts &&
                   otherProducts.map((p) => (
-                    <ProductRecom product={p} key={p._id} />
+                    <ProductRecom product={p} collection={collection} key={p._id} />
                   ))}
               </GridContainer>
             </div>
@@ -357,5 +264,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { getProducts, getProduct }
+  { getProducts, getProduct, getCollections }
 )(ProductPage);

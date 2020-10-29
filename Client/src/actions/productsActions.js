@@ -8,37 +8,45 @@ import {
   DELETE_CART_PRODUCT,
 } from "./types";
 import axios from "axios";
+import { useStore } from "react-redux";
 
 // Get Collections
 export const getCollections = () => async (dispatch) => {
   try {
     setLoading();
 
-    const res = await axios.get('/api/collections');
+    // console.log(useStore().getState().productsReducer)
+    const res = await axios.get("/api/collections");
 
     dispatch({
       type: GET_COLLECTIONS,
-      payload: res.data
-    })
-
+      payload: res.data,
+    });
   } catch (error) {
     dispatch({
       type: PRODUCTS_ERROR,
       payload: error,
     });
   }
-}
+};
 
-// Get Products
-export const getProducts = () => async (dispatch) => {
+// // Get Products
+export const getProducts = (collectionName) => async (dispatch) => {
   try {
     setLoading();
 
-    const res = await axios.get("/api/products");
+    console.log(collectionName);
+    const collections = await (await axios.get("/api/collections")).data;
+    const products = [];
+    collections.map(
+      (collection) =>
+        collection.en_name === collectionName &&
+        products.push(...collection.products)
+    );
 
     dispatch({
       type: GET_PRODUCTS,
-      payload: res.data,
+      payload: products,
     });
   } catch (err) {
     dispatch({
@@ -69,23 +77,26 @@ export const getProduct = (name) => async (dispatch) => {
 export const getCartProducts = () => async (dispatch) => {
   try {
     setLoading();
-    
-    const products = await (await axios.get("/api/products")).data;
-    const cart = localStorage.getItem('cart')
+
+    const collections = await (await axios.get("/api/collections")).data;
+    const products = [];
+    collections.map((collection) => products.push(...collection.products));
+
+    const cart = localStorage.getItem("cart");
     const parseCart = JSON.parse(cart);
     let res = [];
 
     parseCart.map((cartItem) => {
       products.map((product) => {
-          return cartItem._id === product._id
+        return cartItem._id === product._id
           ? res.push({
-            ...product,
-            quantity: cartItem.quantity
-          })
+              ...product,
+              quantity: cartItem.quantity,
+            })
           : "";
       });
     });
-    
+
     dispatch({
       type: GET_CART_PRODUCTS,
       payload: res,
@@ -100,11 +111,11 @@ export const getCartProducts = () => async (dispatch) => {
 
 export const deleteCartProduct = (cart, _id) => async (dispatch) => {
   try {
-    const index = cart.findIndex(item => item._id === _id ? true : false);
+    const index = cart.findIndex((item) => (item._id === _id ? true : false));
     cart.splice(index, 1);
 
     // Delete on local storage
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
 
     dispatch({
       type: DELETE_CART_PRODUCT,
@@ -116,7 +127,7 @@ export const deleteCartProduct = (cart, _id) => async (dispatch) => {
       payload: error,
     });
   }
-}
+};
 
 // Set loading to true
 export const setLoading = () => {

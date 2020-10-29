@@ -13,10 +13,11 @@ import Button from "components/CustomButtons/Button.js";
 import GridItem from "components/Grid/GridItem.js";
 import PropTypes from "prop-types";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(productStyle);
 
-const ProductRecom = ({ product }) => {
+const ProductRecom = ({ product, collection }) => {
   const classes = useStyles();
 
   const {
@@ -33,7 +34,7 @@ const ProductRecom = ({ product }) => {
     <GridItem sm={6} md={3}>
       <Card product>
         <CardHeader image>
-          <a href={`/product-page/${en_name}`}>
+          <a href={`/product-page/${collection}/${en_name}`}>
             <img
               src={require(`assets/img/artists_picxel/${images[0]}`)}
               alt="cardProduct"
@@ -42,9 +43,9 @@ const ProductRecom = ({ product }) => {
           </a>
         </CardHeader>
         <CardBody>
-          <h6 className={classNames(classes.cardCategory, classes.textRose)}>
+          {/* <h6 className={classNames(classes.cardCategory, classes.textRose)}>
             Trending
-          </h6>
+          </h6> */}
           <h4 className={classes.cardTitle}>{name}</h4>
           <div className={classes.cardDescription}>{description}</div>
         </CardBody>
@@ -61,7 +62,7 @@ const ProductRecom = ({ product }) => {
               ₪{before_discount}
             </h4>
           </div>
-          <div className={classes.stats}>
+          {/* <div className={classes.stats}>
             <Tooltip
               id="tooltip-top"
               title="Save to Wishlist"
@@ -72,7 +73,7 @@ const ProductRecom = ({ product }) => {
                 {wishlist ? <Favorite /> : <FavoriteBorder />}
               </Button>
             </Tooltip>
-          </div>
+          </div> */}
         </CardFooter>
       </Card>
     </GridItem>
@@ -81,6 +82,7 @@ const ProductRecom = ({ product }) => {
 
 ProductRecom.prototypes = {
   product: PropTypes.object.isRequired,
+  collection: PropTypes.string.isRequired,
 };
 
 export default ProductRecom;

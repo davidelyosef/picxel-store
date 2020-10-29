@@ -37,7 +37,6 @@ const PresentationPage = ({
     async function go() {
       await getCollections();
       collections = store.getState().productsReducer.collections;
-      console.log(collections);
 
       // const artists = products.map(p => p.artist);
       // const uniques = artists.filter(onlyUnique);

@@ -140,7 +140,8 @@ html * {
   letter-spacing: normal !important; }
 
 body {
-  font-size: 1rem; }
+  font-size: 1rem;
+  direction: rtl !important; }
 
 body,
 h1,
