@@ -5,6 +5,7 @@ import {
   PRODUCTS_ERROR,
   SET_LOADING,
   GET_CART_PRODUCTS,
+  DELETE_CART_PRODUCT,
 } from "../actions/types";
 
 const initialState = {
@@ -59,6 +60,13 @@ export default (state = initialState, action) => {
         loading: false
       }
 
+    case DELETE_CART_PRODUCT:
+      return {
+        ...state,
+        cart: action.payload,
+        loading: false
+      }
+      
     default:
       return state;
   }

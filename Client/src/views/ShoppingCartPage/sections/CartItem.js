@@ -10,10 +10,14 @@ import PropTypes from "prop-types";
 import React from "react";
 import "../style/shoppingCart.scss";
 import defaultImage from "assets/img/placeholder.jpg";
+// redux
+import { connect, useStore } from "react-redux";
+import { deleteCartProduct } from "actions/productsActions";
 
 const useStyles = makeStyles(shoppingCartStyle);
 
 const CartItem = ({
+  deleteCartProduct,
   cart,
   product: { images, en_name, name, price, quantity, _id },
 }) => {
@@ -55,6 +59,10 @@ const CartItem = ({
     elem2.innerHTML = allSum;
   };
 
+  const onDelete = () => {
+    deleteCartProduct(cart, _id);
+  }
+
   return (
     <tr>
       <td className="td">
@@ -77,7 +85,6 @@ const CartItem = ({
             {name}
           </a>
           <br />
-          <small className={classes.tdNameSmall}>by Dolce&amp;Gabbana</small>
         </span>
       </td>
 
@@ -132,7 +139,7 @@ const CartItem = ({
           placement="left"
           classes={{ tooltip: classes.tooltip }}
         >
-          <Button link className={classes.actionButton}>
+          <Button link className={classes.actionButton} onClick={() => onDelete(this)}>
             <Close />
           </Button>
         </Tooltip>
@@ -146,4 +153,8 @@ CartItem.propTypes = {
   cart: PropTypes.array.isRequired,
 };
 
-export default CartItem;
+const mapStateToProps = (state) => ({
+  productsReducer: state.productsReducer,
+});
+
+export default connect(mapStateToProps, { deleteCartProduct })(CartItem);

@@ -5,6 +5,7 @@ import {
   SET_LOADING,
   GET_PRODUCT,
   GET_CART_PRODUCTS,
+  DELETE_CART_PRODUCT,
 } from "./types";
 import axios from "axios";
 
@@ -96,6 +97,26 @@ export const getCartProducts = () => async (dispatch) => {
     });
   }
 };
+
+export const deleteCartProduct = (cart, _id) => async (dispatch) => {
+  try {
+    const index = cart.findIndex(item => item._id === _id ? true : false);
+    cart.splice(index, 1);
+
+    // Delete on local storage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    dispatch({
+      type: DELETE_CART_PRODUCT,
+      payload: cart,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCTS_ERROR,
+      payload: error,
+    });
+  }
+}
 
 // Set loading to true
 export const setLoading = () => {
