@@ -20,6 +20,7 @@ import defaultImage from "assets/img/placeholder.jpg";
 
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
+import { checkImage } from "global";
 
 const useStyles = makeStyles(styles);
 
@@ -39,6 +40,7 @@ const SectionProductPreview = ({
   },
 }) => {
   const classes = useStyles();
+  
   return (
     <GridItem md={3} sm={4} xs={6}>
       <Card product plain>
@@ -47,7 +49,7 @@ const SectionProductPreview = ({
             <img
               src={
                 images
-                  ? require(`assets/img/artists_picxel/${images[0]}`)
+                  ? checkImage(`${images[0]}`)
                   : defaultImage
               }
               alt="..."
@@ -59,7 +61,7 @@ const SectionProductPreview = ({
             style={{
               backgroundImage: `url(${
                 images[0]
-                  ? require(`assets/img/artists_picxel/${images[0]}`)
+                  ? checkImage(`${images[0]}`)
                   : defaultImage
               })`,
               opacity: 1,

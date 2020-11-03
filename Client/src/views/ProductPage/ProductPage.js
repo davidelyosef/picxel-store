@@ -125,8 +125,6 @@ const ProductPage = ({
     setTheCart(JSON.stringify([add]));
   };
 
-  const [colorSelect, setColorSelect] = React.useState("0");
-  const [sizeSelect, setSizeSelect] = React.useState("0");
   const classes = useStyles();
 
   return (

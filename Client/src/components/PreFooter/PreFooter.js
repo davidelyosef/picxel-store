@@ -22,8 +22,40 @@ export default function PreFooter() {
   const [value, setValue] = useState("");
 
   const sendMail = () => {
-    console.log(value);
+    let val = (document.getElementById('emailPreFooter')).value;
+    const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
+
+    emailRegex.test(val) && console.log(val.toLowerCase());
   }
+
+  // onSubmit() {
+  //   let form = this.contactForm.value;
+  //   const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
+  //   if (form.fullName !== "" && form.email !== "" && form.subject !== "" && form.message !== "") {
+  //     if (emailRegex.test(form.email)) {
+  //       form.email = form.email.toLowerCase();
+  //       // here i send the mail
+  //       try {
+  //         const newContact = firebase.functions().httpsCallable("newContact");
+  //         const result = newContact(form);
+  //         this.firebaseService.createMessage(form).then(
+  //           res => {
+  //             console.log(form, "formValue");
+  //           }
+  //         )
+  //         console.log(result);          
+  //       } catch (error) {
+  //         console.log();
+  //       }
+  //       this.confirmSub('Your message has been sent. We will contact you very shortly', '#fff', '#000', true);
+        
+  //     } else {
+  //       this.confirmSub('Ilegal email address, please type again.', '#ff4b4bf2', '#fff', false);
+  //     }
+  //   } else {
+  //     this.confirmSub('Please fill all the fields.', '#ff4b4bf2', '#fff', false);
+  //   }
+  // }
 
   return (
     <div

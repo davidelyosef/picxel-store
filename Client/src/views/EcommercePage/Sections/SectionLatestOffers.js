@@ -4,7 +4,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 // @material-ui icons
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-import dolce from "assets/img/examples/dolce.jpg";
+import defaultImage from "assets/img/placeholder.jpg";
 // import kadishman from "assets/img/examples/blog2.jpg";
 import gucci from "assets/img/examples/gucci.jpg";
 import tomFord from "assets/img/examples/tom-ford.jpg";
@@ -20,6 +20,7 @@ import Button from "components/CustomButtons/Button.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import React from "react";
+import { checkImage } from "global";
 // redux
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -28,7 +29,7 @@ import { getCollections } from "../../../actions/productsActions";
 const useStyles = makeStyles(styles);
 
 const SectionLatestOffers = ({
-  productsReducer: { products, collections },
+  productsReducer: { collections },
   getCollections,
 }) => {
   const classes = useStyles();
@@ -46,7 +47,7 @@ const SectionLatestOffers = ({
       {collections !== null && (
         <section>
           {collections.map((c) => (
-            <div className={classes.container} key={c._id+'asdsdw'}>
+            <div className={classes.container} key={c._id + "asdsdw"}>
               <h2 style={{ textAlign: "right" }}>{c.name}</h2>
               <GridContainer>
                 {c.products.map((p) => (
@@ -55,10 +56,12 @@ const SectionLatestOffers = ({
                       <CardHeader image plain>
                         <Link to={`/product-page/${c.en_name}/${p.en_name}`}>
                           <img
-                            src={require(`assets/img/artists_picxel/${
-                              p.images[0]
-                            }`)}
+                            src={checkImage(`${p.images[0]}`)}
                             alt={`${p.name} ${p.artist}`}
+                            style={{
+                              height: "300px",
+                              objectFit: "cover",
+                            }}
                           />
                         </Link>
                         <div
