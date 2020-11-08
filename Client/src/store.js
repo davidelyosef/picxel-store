@@ -7,6 +7,7 @@ const initialState = {};
 
 const middleware = [thunk];
 
+// Connect app to redux
 const store = createStore(
   rootReducer,
   initialState,

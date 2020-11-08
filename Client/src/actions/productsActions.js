@@ -8,14 +8,12 @@ import {
   DELETE_CART_PRODUCT,
 } from "./types";
 import axios from "axios";
-import { useStore } from "react-redux";
 
 // Get Collections
 export const getCollections = () => async (dispatch) => {
   try {
     setLoading();
 
-    // console.log(useStore().getState().productsReducer)
     const res = await axios.get("/api/collections");
 
     dispatch({

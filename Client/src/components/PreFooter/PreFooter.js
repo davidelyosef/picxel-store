@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui icons
 import Mail from "@material-ui/icons/Mail";
 import styles from "assets/jss/material-kit-pro-react/views/componentsSections/preFooter.js";
+import { addEmail } from "actions/contactActions";
 
 const useStyles = makeStyles(styles);
 
@@ -22,11 +23,16 @@ export default function PreFooter() {
   const [value, setValue] = useState("");
 
   const sendMail = () => {
-    let val = (document.getElementById('emailPreFooter')).value;
-    const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
+    let val = document.getElementById("emailPreFooter").value;
+    const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
-    emailRegex.test(val) && console.log(val.toLowerCase());
-  }
+    emailRegex.test(val) && addEmail(val);
+    document.getElementById("emailPreFooter").value = '';
+  };
+
+  const eventHandler = (e) => {
+    setValue(e.target.value);
+  };
 
   // onSubmit() {
   //   let form = this.contactForm.value;
@@ -43,12 +49,12 @@ export default function PreFooter() {
   //             console.log(form, "formValue");
   //           }
   //         )
-  //         console.log(result);          
+  //         console.log(result);
   //       } catch (error) {
   //         console.log();
   //       }
   //       this.confirmSub('Your message has been sent. We will contact you very shortly', '#fff', '#000', true);
-        
+
   //     } else {
   //       this.confirmSub('Ilegal email address, please type again.', '#ff4b4bf2', '#fff', false);
   //     }
@@ -82,7 +88,6 @@ export default function PreFooter() {
                   <GridContainer>
                     <GridItem xs={12} sm={6} md={6} lg={8}>
                       <CustomInput
-                        onChange={e => setValue(e.target.value)}
                         id="emailPreFooter"
                         formControlProps={{
                           fullWidth: true,

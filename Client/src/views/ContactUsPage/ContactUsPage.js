@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react components used to create a google map
@@ -30,6 +30,7 @@ import Footer from "components/Footer/Footer.js";
 
 import contactUsStyle from "assets/jss/material-kit-pro-react/views/contactUsStyle.js";
 import "./style/contactUs.scss";
+import { addContactDetails } from "actions/contactActions";
 
 const CustomSkinMap = withScriptjs(
   withGoogleMap(() => (
@@ -109,11 +110,45 @@ const CustomSkinMap = withScriptjs(
 const useStyles = makeStyles(contactUsStyle);
 
 export default function ContactUsPage() {
+  const [contact, setContact] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const { fullName, email, phone, message } = contact;
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-  });
+  }, []);
+
   const classes = useStyles();
+
+  const setStateByTagName = (e) => {
+    setContact({ ...contact, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = () => {
+    const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
+    const phoneRegex = /^0\d([\d]{0,1})([-]{0,1})\d{7}$/
+
+    if (!emailRegex.test(email)) {
+      alert('Email is not valid.');
+      return;
+    }
+
+    if (!phoneRegex.test(phone)) {
+      alert('Phone number is not valid');
+      return;
+    }
+    
+    addContactDetails(contact);
+    console.log(contact);
+    setContact({ fullName: '', message: '', phone: '', email: '' });
+  }
+
   return (
     <div>
       <div className={classes.bigMap}>
@@ -189,6 +224,9 @@ export default function ContactUsPage() {
                   <CustomInput
                     inputProps={{
                       placeholder: "שם מלא",
+                      value: fullName,
+                      name: "fullName",
+                      onChange: setStateByTagName,
                     }}
                     id="float"
                     formControlProps={{
@@ -198,6 +236,9 @@ export default function ContactUsPage() {
                   <CustomInput
                     inputProps={{
                       placeholder: 'הדוא"ל שלך',
+                      value: email,
+                      name: "email",
+                      onChange: setStateByTagName,
                     }}
                     id="float"
                     formControlProps={{
@@ -207,6 +248,9 @@ export default function ContactUsPage() {
                   <CustomInput
                     inputProps={{
                       placeholder: "טלפון",
+                      value: phone,
+                      name: "phone",
+                      onChange: setStateByTagName,
                     }}
                     id="float"
                     formControlProps={{
@@ -216,8 +260,11 @@ export default function ContactUsPage() {
                   <CustomInput
                     inputProps={{
                       placeholder: "הודעה",
+                      value: message,
                       multiline: true,
                       rows: 6,
+                      name: "message",
+                      onChange: setStateByTagName,
                     }}
                     id="float"
                     formControlProps={{
@@ -225,7 +272,7 @@ export default function ContactUsPage() {
                     }}
                   />
                   <div className={classes.textCenter}>
-                    <Button color="primary" round>
+                    <Button color="primary" round onClick={onSubmit}>
                       שלח הודעה
                     </Button>
                   </div>

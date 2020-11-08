@@ -35,7 +35,6 @@ const ProductPage = ({
   productsReducer: { selectedCollection, selectedProduct, collections },
   getProducts,
   getProduct,
-  getCollections,
 }) => {
   const en_name = window.location.pathname.replace("/product-page/", "");
   const collection = en_name.substr(0, en_name.indexOf("/"));
@@ -67,12 +66,8 @@ const ProductPage = ({
 
   useEffect(() => {
     async function get() {
-      
-      
       await getProducts(collection);
       await getProduct(productName);
-      !collections && await getCollections();
-      console.log(collections);
       
       selectedCollection = store.getState().productsReducer.selectedCollection;
       selectedProduct = store.getState().productsReducer.selectedProduct;

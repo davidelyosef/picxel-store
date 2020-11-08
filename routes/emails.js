@@ -18,6 +18,9 @@ router.get("/", async (req, res) => {
 router.post("/", auth, async (req, res) => {
   try {
     const newMail = req.body;
+    
+    // check if already exists
+    // ...
 
     const newEmail = new Email(newMail);
     const email = await newEmail.save();
@@ -25,7 +28,7 @@ router.post("/", auth, async (req, res) => {
     res.status(201).json(email);
 
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
     res.status(500).send("Server Error");
   }
 });
